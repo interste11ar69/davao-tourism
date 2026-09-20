@@ -44,23 +44,13 @@ export function renderNavbar(container, appState) {
             </nav>
 
             <div class="navbar-actions">
-              <a href="#business-card-section" class="btn btn-outline" id="nav-btn-card" aria-label="View QR Business Card">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <rect x="3" y="3" width="7" height="7"></rect>
-                  <rect x="14" y="3" width="7" height="7"></rect>
-                  <rect x="14" y="14" width="7" height="7"></rect>
-                  <rect x="3" y="14" width="7" height="7"></rect>
-                </svg>
-                QR Card
-              </a>
-
-              <a href="#map-section" class="btn btn-text" id="nav-btn-map" aria-label="View map">
+              <a href="#map-section" class="btn btn-outline" id="nav-btn-map" aria-label="View interactive map">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
                   <line x1="8" y1="2" x2="8" y2="18"></line>
                   <line x1="16" y1="6" x2="16" y2="22"></line>
                 </svg>
-                Map
+                Map View
               </a>
             </div>
 
@@ -103,15 +93,6 @@ export function renderNavbar(container, appState) {
       });
     }
 
-    // QR Card
-    const cardBtn = container.querySelector("#nav-btn-card");
-    if (cardBtn) {
-      cardBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        const cardSection = document.getElementById("business-card-section");
-        if (cardSection) cardSection.scrollIntoView({ behavior: "smooth" });
-      });
-    }
 
     // Map
     const mapBtn = container.querySelector("#nav-btn-map");

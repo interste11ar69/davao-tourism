@@ -42,15 +42,14 @@ export function renderHero(container, appState) {
             <a href="#gallery-section" class="btn btn-gold" id="hero-cta-explore">
               Browse 27 Venues
             </a>
-            <button class="btn-hero-ghost" id="hero-cta-card">
+            <a href="#map-section" class="btn-hero-ghost" id="hero-cta-map">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <rect x="3" y="3" width="7" height="7"></rect>
-                <rect x="14" y="3" width="7" height="7"></rect>
-                <rect x="14" y="14" width="7" height="7"></rect>
-                <rect x="3" y="14" width="7" height="7"></rect>
+                <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                <line x1="8" y1="2" x2="8" y2="18"></line>
+                <line x1="16" y1="6" x2="16" y2="22"></line>
               </svg>
-              QR Business Card
-            </button>
+              Interactive Map
+            </a>
           </div>
 
         </div>
@@ -87,11 +86,12 @@ export function renderHero(container, appState) {
     });
   }
 
-  const cardBtn = container.querySelector("#hero-cta-card");
-  if (cardBtn) {
-    cardBtn.addEventListener("click", () => {
-      const cardSection = document.getElementById("business-card-section");
-      if (cardSection) cardSection.scrollIntoView({ behavior: "smooth" });
+  const mapBtn = container.querySelector("#hero-cta-map");
+  if (mapBtn) {
+    mapBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const mapSection = document.getElementById("map-section");
+      if (mapSection) mapSection.scrollIntoView({ behavior: "smooth" });
     });
   }
 }

@@ -4,7 +4,7 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/((?!assets/).*)",
+      "source": "/((?!assets/|card).*)",
       "destination": "/index.html"
     }
   ],

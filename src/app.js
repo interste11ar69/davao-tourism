@@ -60,10 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
             </p>
           </div>
 
-          <div style="display:flex;gap:3rem;flex-wrap:wrap;">
             <div class="footer-links-group">
               <a href="#gallery-section">All Destinations</a>
-              <a href="#business-card-section">QR Business Card</a>
+              <a href="card.html">Print Physical Cards (Driver Pass)</a>
               <a href="#map-section">Map View</a>
               <a href="#kadayawan-section">Kadayawan</a>
             </div>

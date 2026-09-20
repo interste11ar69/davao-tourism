@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Madayaw Davao - Physical Tourist Card Kit</title>
+  <meta name="description" content="Printable physical business card kit for taxi drivers, tour guides, and hotel staff to hand to Davao City tourists." />
+  <meta name="theme-color" content="#0F1117" />
+
+  <link rel="stylesheet" href="src/styles/base.css" />
+  <link rel="stylesheet" href="src/styles/card.css" />
+
+  <style>
+    .kit-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--ivory-warm);
+      padding: 1.25rem 0;
+    }
+    .kit-header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .kit-nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      transition: color 150ms;
+    }
+    .kit-nav-link:hover {
+      color: var(--gold-dark);
+    }
+    .kit-hero {
+      padding: clamp(2.5rem, 5vw, 4rem) 0 1.5rem 0;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .kit-hero h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-top: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .kit-hero p {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      line-height: 1.7;
+    }
+    .print-sheet-section {
+      display: none;
+    }
+    @media print {
+      .kit-header, .kit-hero {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Minimal Kit Navigation -->
+  <header class="kit-header" role="banner">
+    <div class="container">
+      <div class="kit-header-inner">
+        <a href="/" class="kit-nav-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Return to Tourism Portal</span>
+        </a>
+        <span class="overline" style="margin:0;">Physical Card Kit</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="kit-hero">
+        <span class="overline">For Drivers, Hotels &amp; Tour Guides</span>
+        <h1>Physical Visitor Card Kit</h1>
+        <p>
+          Hand these cards to arriving passengers and tourists asking for Davao recommendations. When scanned with any smartphone camera, the QR code instantly launches the official Davao Tourism Portal with 27 verified destinations, dining, and maps.
+        </p>
+      </div>
+    </div>
+
+    <!-- Mount interactive card component -->
+    <div id="business-card-mount"></div>
+  </main>
+
+  <script type="module">
+    import { createAppState } from "./src/state/app-state.js";
+    import { renderBusinessCard } from "./src/components/business-card.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      let initialVercelUrl = "https://davao-tourism.vercel.app";
+      if (
+        typeof window !== "undefined" &&
+        window.location &&
+        window.location.origin &&
+        !window.location.origin.startsWith("file://") &&
+        !window.location.origin.includes("localhost") &&
+        !window.location.origin.includes("127.0.0.1")
+      ) {
+        initialVercelUrl = window.location.origin;
+      }
+
+      const appState = createAppState({
+        targetVercelUrl: initialVercelUrl
+      });
+
+      const cardMount = document.getElementById("business-card-mount");
+      if (cardMount) renderBusinessCard(cardMount, appState);
+    });
+  </script>
+
+</body>
+</html>
