@@ -1,0 +1,250 @@
+/* ==========================================================================
+   Madayaw Davao Design System
+   Identity: Cultural travel portal for Davao City. Lively, editorial.
+   Typography: Playfair Display (display headlines, chosen for magazine authority
+   that matches the prestige of Davao's cultural identity) + Inter (body, neutral)
+   Palette: Ink (#0F1117) + Ivory (#F7F3EE) + Kadayawan Gold (#C8860A)
+   Dials: ENERGY 3 / RHYTHM 3 / MOTION 1
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* Core palette: Ink + Ivory + one accent */
+  --ink:         #0F1117;
+  --ink-soft:    #2D3142;
+  --ink-muted:   #6B7280;
+  --ivory:       #F7F3EE;
+  --ivory-warm:  #EDE8E1;
+  --surface:     #FFFFFF;
+  --gold:        #C8860A;
+  --gold-dark:   #A36A05;
+  --gold-tint:   rgba(200, 134, 10, 0.10);
+  --teal:        #0D6E68;
+
+  /* Intentional radius scale (not pill everywhere) */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+
+  /* Shadows: used only as elevation markers, not decoration */
+  --shadow-card: 0 2px 16px rgba(15, 17, 23, 0.08);
+  --shadow-raise: 0 8px 32px rgba(15, 17, 23, 0.14);
+  --shadow-modal: 0 24px 64px rgba(15, 17, 23, 0.25);
+
+  /* Spacing */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --s-9: 7rem;
+
+  --max-w: 1280px;
+  --col-pad: clamp(1.25rem, 5vw, 3.5rem);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background-color: var(--ivory);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background-color: var(--ivory);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* No outline:none — keyboard nav must always be visible */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Focus ring: gold, always visible */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+/* Typography: Playfair for display, Inter for body */
+h1, h2, h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+h4, h5, h6 {
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+h1 { font-size: clamp(2.6rem, 6vw, 5rem); }
+h2 { font-size: clamp(2rem, 4vw, 3.25rem); }
+h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+h4 { font-size: 1.1rem; }
+
+p {
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* Layout container */
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--col-pad);
+  padding-right: var(--col-pad);
+}
+
+/* Overline label: not a pill badge, a simple typographic label */
+.overline {
+  display: inline-block;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Category badge: deliberate small radius, distinct per type */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--r-sm);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.badge-spot        { background: rgba(13, 110, 104, 0.12); color: var(--teal); }
+.badge-restaurant  { background: rgba(200, 134, 10, 0.12); color: var(--gold-dark); }
+.badge-cafe        { background: rgba(92, 51, 23, 0.12); color: #5C3317; }
+.badge-hotel       { background: rgba(15, 17, 23, 0.08); color: var(--ink-soft); }
+
+/* Buttons: two types only, deliberate radius */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--r-md);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 200ms var(--ease-out),
+              transform 200ms var(--ease-out),
+              box-shadow 200ms var(--ease-out);
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: #FFFFFF;
+}
+.btn-primary:hover {
+  background: var(--ink-soft);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-card);
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: #FFFFFF;
+}
+.btn-gold:hover {
+  background: var(--gold-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(200, 134, 10, 0.35);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid rgba(15, 17, 23, 0.2);
+}
+.btn-outline:hover {
+  border-color: var(--ink);
+  background: var(--ivory-warm);
+}
+
+.btn-text {
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--r-sm);
+}
+.btn-text:hover {
+  color: var(--ink);
+  background: var(--ivory-warm);
+}
+
+/* Maps link: teal, text style */
+.btn-maps {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--teal);
+  background: rgba(13, 110, 104, 0.10);
+  border: none;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: background 180ms;
+}
+.btn-maps:hover { background: rgba(13, 110, 104, 0.18); }

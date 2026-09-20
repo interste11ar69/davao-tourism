@@ -1,0 +1,25 @@
+{
+  "name": "davao-tourism",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Davao City QR Business Card & Curated Tourism Web Portal",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 3000",
+    "serve": "python3 -m http.server 3000",
+    "build": "node scripts/verify-system.js",
+    "verify": "node scripts/verify-system.js",
+    "fetch-images": "python3 scripts/fetch-images.py"
+  },
+  "keywords": [
+    "davao",
+    "tourism",
+    "kadayawan",
+    "qr-code",
+    "business-card",
+    "philippines",
+    "travel"
+  ],
+  "author": "Davao Tourism Board Collective",
+  "license": "MIT"
+}

@@ -1,0 +1,377 @@
+/* ==========================================================================
+   Davao Tourism Design System: Interactive 3D Business Card & Print Styles
+   Proportions: Standard Business Card 3.5in x 2.0in (1.75 : 1 aspect ratio)
+   ========================================================================== */
+
+.card-experience-section {
+  padding-top: clamp(2rem, 5vw, 4rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #FFFFFF 0%, #F1F5F9 100%);
+  border-bottom: 1px solid var(--border-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-experience-header {
+  text-align: center;
+  max-width: 680px;
+  margin-bottom: var(--space-xl);
+}
+
+.card-experience-header .badge {
+  margin-bottom: var(--space-sm);
+}
+
+.card-experience-header h2 {
+  margin-bottom: var(--space-xs);
+}
+
+.card-experience-header p {
+  font-size: 1.05rem;
+}
+
+/* 3D Perspective Scene Container */
+.card-scene {
+  width: 100%;
+  max-width: 520px;
+  perspective: 1400px;
+  margin-bottom: var(--space-xl);
+  padding: 0 var(--space-md);
+}
+
+/* Card Outer Aspect Ratio Box */
+.card-container {
+  width: 100%;
+  aspect-ratio: 1.75 / 1; /* 3.5" x 2.0" proportional ratio */
+  position: relative;
+  cursor: pointer;
+}
+
+/* Card Inner 3D Transformer */
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform var(--transition-flip);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card-3d);
+}
+
+.card-container.is-flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Card Faces (Front & Back) */
+.card-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  padding: clamp(1.2rem, 3.5vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* ---------------- FRONT FACE ---------------- */
+.card-front {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #0F766E 100%);
+  color: var(--text-inverse);
+  position: relative;
+}
+
+/* Subtle Ethnic Kadayawan Accent Pattern */
+.card-front::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(rgba(217, 119, 6, 0.15) 1px, transparent 1px);
+  background-size: 16px 16px;
+  pointer-events: none;
+}
+
+.card-front-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.card-brand-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  font-weight: 800;
+  color: var(--accent-amber);
+  text-transform: uppercase;
+}
+
+.card-front-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+  color: #E2E8F0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.card-front-center {
+  position: relative;
+  z-index: 1;
+  margin: auto 0;
+}
+
+.card-front-title {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #FFFFFF;
+  margin-bottom: 0.25rem;
+}
+
+.card-front-subtitle {
+  font-size: clamp(0.78rem, 1.8vw, 0.92rem);
+  color: #94A3B8;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.card-front-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: clamp(0.5rem, 1.5vw, 0.85rem);
+}
+
+.card-front-coords {
+  font-size: 0.72rem;
+  font-family: monospace;
+  color: var(--accent-amber);
+  letter-spacing: 0.05em;
+}
+
+.card-front-hint {
+  font-size: 0.72rem;
+  color: #E2E8F0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ---------------- BACK FACE ---------------- */
+.card-back {
+  background: #FFFFFF;
+  color: var(--text-primary);
+  transform: rotateY(180deg);
+  border: 1px solid var(--border-light);
+  box-shadow: inset 0 0 0 2px rgba(217, 119, 6, 0.15);
+}
+
+.card-back-content {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 1.75rem);
+  height: 100%;
+}
+
+.card-qr-box {
+  background: #FFFFFF;
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-qr-box svg {
+  display: block;
+  width: clamp(100px, 20vw, 140px);
+  height: clamp(100px, 20vw, 140px);
+}
+
+.card-back-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  gap: 0.4rem;
+}
+
+.card-back-tag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+}
+
+.card-back-title {
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.card-back-url {
+  font-size: clamp(0.72rem, 1.8vw, 0.85rem);
+  font-family: monospace;
+  color: var(--accent-green);
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.card-back-instructions {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 0.2rem;
+}
+
+/* ---------------- CARD CONTROLS PANEL ---------------- */
+.card-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+/* Vercel URL Customizer Form */
+.vercel-config-box {
+  width: 100%;
+  max-width: 520px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.vercel-config-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+}
+
+.vercel-config-status {
+  color: var(--accent-green);
+}
+
+.vercel-config-input-group {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.vercel-config-input {
+  flex: 1;
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+  background: var(--bg-canvas);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-family: monospace;
+  transition: border-color var(--transition-fast);
+}
+
+.vercel-config-input:focus {
+  border-color: var(--accent-gold);
+  background: #FFFFFF;
+}
+
+/* ---------------- PRINT STYLESHEET ---------------- */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+
+  /* Hide navigation, hero, controls, gallery, and portal sections in print mode */
+  .app-header,
+  .hero-section,
+  .gallery-section,
+  .map-section,
+  .kadayawan-section,
+  .app-footer,
+  .card-controls,
+  .vercel-config-box,
+  .card-experience-header {
+    display: none !important;
+  }
+
+  .card-experience-section {
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .card-scene {
+    max-width: 100% !important;
+    perspective: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .card-container {
+    aspect-ratio: auto !important;
+    cursor: default !important;
+  }
+
+  .card-inner {
+    transform: none !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.5in !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .card-face {
+    position: relative !important;
+    width: 3.5in !important;
+    height: 2in !important;
+    box-sizing: border-box !important;
+    backface-visibility: visible !important;
+    -webkit-backface-visibility: visible !important;
+    border: 1px solid #94A3B8 !important;
+    page-break-inside: avoid !important;
+  }
+
+  .card-back {
+    transform: none !important;
+  }
+}

@@ -1,0 +1,152 @@
+/* ==========================================================================
+   Davao Tourism Design System: Map Explorer Styles & Geographic Pin Visualizer
+   ========================================================================== */
+
+.map-section {
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(4rem, 8vw, 6rem);
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.map-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  margin-top: var(--space-xl);
+}
+
+@media (min-width: 992px) {
+  .map-layout-grid {
+    grid-template-columns: 360px 1fr;
+  }
+}
+
+/* Sidebar List of Locations for Map Focus */
+.map-sidebar {
+  display: flex;
+  flex-direction: column;
+  max-height: 580px;
+  background: var(--bg-canvas);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+}
+
+.map-sidebar-header {
+  padding: var(--space-md) var(--space-lg);
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.map-sidebar-header h4 {
+  font-size: 1rem;
+}
+
+.map-sidebar-list {
+  overflow-y: auto;
+  padding: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.map-list-item {
+  padding: 0.85rem var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-align: left;
+}
+
+.map-list-item:hover {
+  border-color: var(--accent-gold);
+  transform: translateX(2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.map-list-item.is-selected {
+  border-color: var(--accent-gold);
+  background: rgba(217, 119, 6, 0.05);
+}
+
+.map-list-item-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.map-list-item-district {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Map Interactive Canvas Container */
+.map-canvas-container {
+  height: 580px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  background: #E2E8F0;
+}
+
+.map-viewport {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Selected Pin Overlay Card inside the Map */
+.map-pin-card-overlay {
+  position: absolute;
+  bottom: var(--space-lg);
+  left: var(--space-lg);
+  right: var(--space-lg);
+  max-width: 440px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-xl);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  transition: all var(--transition-normal);
+}
+
+.map-pin-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.map-pin-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 0.2rem;
+}
+
+.map-pin-card-address {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.map-pin-card-actions {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+}
