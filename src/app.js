@@ -13,9 +13,16 @@ import { renderMapExplorer } from "./components/map-explorer.js";
 import { renderLocationModal } from "./components/modal-detail.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Detect live hosting environment (e.g. Vercel deployment domain)
+  // Automatically detect live hosting domain (e.g. Vercel deployment URL)
   let initialVercelUrl = "https://davao-tourism.vercel.app";
-  if (window.location && window.location.origin && window.location.origin.includes("vercel.app")) {
+  if (
+    typeof window !== "undefined" &&
+    window.location &&
+    window.location.origin &&
+    !window.location.origin.startsWith("file://") &&
+    !window.location.origin.includes("localhost") &&
+    !window.location.origin.includes("127.0.0.1")
+  ) {
     initialVercelUrl = window.location.origin;
   }
 
