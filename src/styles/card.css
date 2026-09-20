@@ -1,156 +1,327 @@
 /* ==========================================================================
-   Davao Tourism Design System: Interactive 3D Business Card & Print Styles
-   Proportions: Standard Business Card 3.5in x 2.0in (1.75 : 1 aspect ratio)
+   Madayaw Davao: Interactive 3D Business Card & Print System
+   Aesthetic: Luxury tactile stationery, editorial typography,
+   physical-to-digital QR bridge with authentic 3.5" x 2.0" card proportions.
    ========================================================================== */
 
 .card-experience-section {
-  padding-top: clamp(2rem, 5vw, 4rem);
-  padding-bottom: clamp(3rem, 6vw, 5rem);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at center, #FFFFFF 0%, #F1F5F9 100%);
-  border-bottom: 1px solid var(--border-light);
+  padding: clamp(4.5rem, 8vw, 7.5rem) 0;
+  background-color: var(--ivory-warm);
+  border-bottom: 1px solid rgba(15, 17, 23, 0.08);
   position: relative;
   overflow: hidden;
 }
 
-.card-experience-header {
-  text-align: center;
-  max-width: 680px;
-  margin-bottom: var(--space-xl);
+/* Two-column editorial stage */
+.card-stage-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
 }
 
-.card-experience-header .badge {
-  margin-bottom: var(--space-sm);
+@media (min-width: 960px) {
+  .card-stage-layout {
+    grid-template-columns: 1.1fr 1fr;
+  }
 }
 
-.card-experience-header h2 {
-  margin-bottom: var(--space-xs);
+/* Left: Editorial Narrative & Controls */
+.card-stage-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  max-width: 540px;
 }
 
-.card-experience-header p {
-  font-size: 1.05rem;
+.card-stage-info .overline {
+  margin-bottom: var(--s-1);
 }
 
-/* 3D Perspective Scene Container */
+.card-stage-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.card-stage-title em {
+  font-style: italic;
+  color: var(--gold-dark);
+}
+
+.card-stage-desc {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  margin-bottom: var(--s-4);
+}
+
+/* Feature bullets */
+.card-feature-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  margin-bottom: var(--s-5);
+}
+
+.card-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.card-feature-item svg {
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+/* Action button row */
+.card-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-3);
+}
+
+/* Collapsible URL config drawer */
+.card-url-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  transition: color 150ms;
+}
+
+.card-url-toggle:hover {
+  color: var(--ink);
+}
+
+.card-url-drawer {
+  margin-top: var(--s-2);
+  padding: var(--s-4);
+  background: var(--surface);
+  border: 1px solid rgba(15, 17, 23, 0.12);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  max-width: 480px;
+  animation: fadeInDown 200ms var(--ease-out);
+}
+
+.card-url-drawer.is-hidden {
+  display: none;
+}
+
+.card-url-drawer label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.card-url-input-group {
+  display: flex;
+  gap: var(--s-2);
+}
+
+.card-url-input {
+  flex: 1;
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--r-sm);
+  border: 1px solid rgba(15, 17, 23, 0.15);
+  background: var(--ivory);
+  font-size: 0.88rem;
+  color: var(--ink);
+  font-family: monospace;
+}
+
+.card-url-input:focus {
+  border-color: var(--gold);
+  outline: none;
+  background: #FFFFFF;
+}
+
+/* Right: 3D Card Canvas Stage */
+.card-stage-canvas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* 3D Scene Wrapper */
 .card-scene {
   width: 100%;
-  max-width: 520px;
+  max-width: 480px;
   perspective: 1400px;
-  margin-bottom: var(--space-xl);
-  padding: 0 var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Card Outer Aspect Ratio Box */
+/* Card Outer Container */
 .card-container {
   width: 100%;
-  aspect-ratio: 1.75 / 1; /* 3.5" x 2.0" proportional ratio */
+  aspect-ratio: 1.75 / 1; /* Standard 3.5in x 2.0in ratio */
   position: relative;
   cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
-/* Card Inner 3D Transformer */
+/* Avoid ugly mouse-click focus ring while retaining keyboard accessibility */
+.card-container:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.card-container:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 6px;
+  border-radius: var(--r-lg);
+}
+
+/* Flippable Card Inner (3D Transform) */
 .card-inner {
   width: 100%;
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform var(--transition-flip);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card-3d);
+  transition: transform 650ms var(--ease-out), box-shadow 300ms;
+  border-radius: var(--r-lg);
+  box-shadow: 0 16px 40px -8px rgba(15, 17, 23, 0.18),
+              0 2px 8px rgba(15, 17, 23, 0.08);
+}
+
+.card-container:hover .card-inner {
+  box-shadow: 0 24px 52px -10px rgba(15, 17, 23, 0.24),
+              0 4px 12px rgba(15, 17, 23, 0.10);
+  transform: translateY(-4px);
 }
 
 .card-container.is-flipped .card-inner {
   transform: rotateY(180deg);
 }
 
-/* Card Faces (Front & Back) */
+.card-container.is-flipped:hover .card-inner {
+  transform: rotateY(180deg) translateY(-4px);
+}
+
+/* Card Faces */
 .card-face {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  border-radius: var(--radius-lg);
+  border-radius: var(--r-lg);
   overflow: hidden;
-  padding: clamp(1.2rem, 3.5vw, 2rem);
+  padding: clamp(1.25rem, 3.5vw, 1.85rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-/* ---------------- FRONT FACE ---------------- */
+/* ---------------- FRONT FACE: Luxury Matte Obsidian ---------------- */
 .card-front {
-  background: linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #0F766E 100%);
-  color: var(--text-inverse);
+  background: linear-gradient(135deg, #0D1117 0%, #161B22 55%, #1A232E 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(200, 134, 10, 0.35);
   position: relative;
 }
 
-/* Subtle Ethnic Kadayawan Accent Pattern */
-.card-front::before {
+/* Metallic gold rim reflection */
+.card-front::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: radial-gradient(rgba(217, 119, 6, 0.15) 1px, transparent 1px);
-  background-size: 16px 16px;
+  inset: 0;
+  border-radius: var(--r-lg);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15),
+              inset 0 -1px 1px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+/* Subtle ethnic geometric texture */
+.card-front-pattern {
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  width: 220px;
+  height: 220px;
+  opacity: 0.05;
+  background-image: radial-gradient(var(--gold) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
   pointer-events: none;
 }
 
 .card-front-top {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
-.card-brand-tag {
-  font-size: 0.72rem;
+.card-front-brand {
+  font-size: 0.68rem;
+  font-weight: 700;
   letter-spacing: 0.18em;
-  font-weight: 800;
-  color: var(--accent-amber);
   text-transform: uppercase;
+  color: var(--gold);
 }
 
-.card-front-chip {
+.card-chip {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.25rem 0.6rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.7rem;
-  color: #E2E8F0;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--r-sm);
+  background: rgba(200, 134, 10, 0.15);
+  border: 1px solid rgba(200, 134, 10, 0.35);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #F4D06F;
 }
 
 .card-front-center {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   margin: auto 0;
 }
 
 .card-front-title {
-  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.4rem, 3.2vw, 1.85rem);
   font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  letter-spacing: -0.01em;
   color: #FFFFFF;
-  margin-bottom: 0.25rem;
+  line-height: 1.1;
+  margin-bottom: 0.3rem;
 }
 
 .card-front-subtitle {
-  font-size: clamp(0.78rem, 1.8vw, 0.92rem);
-  color: #94A3B8;
-  letter-spacing: 0.05em;
+  font-size: clamp(0.72rem, 1.6vw, 0.82rem);
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 500;
 }
@@ -160,48 +331,49 @@
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
-  z-index: 1;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding-top: clamp(0.5rem, 1.5vw, 0.85rem);
+  z-index: 2;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  padding-top: var(--s-2);
 }
 
 .card-front-coords {
   font-size: 0.72rem;
   font-family: monospace;
-  color: var(--accent-amber);
-  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.04em;
 }
 
-.card-front-hint {
-  font-size: 0.72rem;
-  color: #E2E8F0;
-  display: flex;
+.card-flip-prompt {
+  display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  font-size: 0.72rem;
+  color: var(--gold);
+  font-weight: 600;
 }
 
-/* ---------------- BACK FACE ---------------- */
+/* ---------------- BACK FACE: Pure Architectural Card Stock ---------------- */
 .card-back {
   background: #FFFFFF;
-  color: var(--text-primary);
+  color: var(--ink);
   transform: rotateY(180deg);
-  border: 1px solid var(--border-light);
-  box-shadow: inset 0 0 0 2px rgba(217, 119, 6, 0.15);
+  border: 1px solid rgba(15, 17, 23, 0.10);
+  box-shadow: inset 0 0 0 1px rgba(200, 134, 10, 0.15);
 }
 
-.card-back-content {
+.card-back-grid {
   display: flex;
   align-items: center;
-  gap: clamp(1rem, 3vw, 1.75rem);
+  gap: clamp(1rem, 2.5vw, 1.75rem);
   height: 100%;
 }
 
 .card-qr-box {
   background: #FFFFFF;
-  padding: 0.5rem;
-  border-radius: var(--radius-md);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 0.4rem;
+  border-radius: var(--r-md);
+  border: 1px solid rgba(15, 17, 23, 0.12);
+  box-shadow: 0 4px 14px rgba(15, 17, 23, 0.08);
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -210,125 +382,74 @@
 
 .card-qr-box svg {
   display: block;
-  width: clamp(100px, 20vw, 140px);
-  height: clamp(100px, 20vw, 140px);
+  width: clamp(96px, 18vw, 130px);
+  height: clamp(96px, 18vw, 130px);
 }
 
-.card-back-details {
+.card-back-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 0.3rem;
   text-align: left;
-  gap: 0.4rem;
 }
 
-.card-back-tag {
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  color: var(--accent-gold);
+.card-back-overline {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: var(--gold-dark);
 }
 
 .card-back-title {
-  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
   font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1.2;
+  color: var(--ink);
+  line-height: 1.15;
 }
 
-.card-back-url {
-  font-size: clamp(0.72rem, 1.8vw, 0.85rem);
+.card-back-domain {
+  font-size: clamp(0.72rem, 1.5vw, 0.82rem);
   font-family: monospace;
-  color: var(--accent-green);
   font-weight: 600;
+  color: var(--teal);
   word-break: break-all;
 }
 
-.card-back-instructions {
+.card-back-caption {
   font-size: 0.72rem;
-  color: var(--text-muted);
-  line-height: 1.4;
-  margin-top: 0.2rem;
+  color: var(--ink-muted);
+  line-height: 1.45;
+  margin-top: 0.15rem;
 }
 
-/* ---------------- CARD CONTROLS PANEL ---------------- */
-.card-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-md);
-  margin-bottom: var(--space-lg);
-}
-
-/* Vercel URL Customizer Form */
-.vercel-config-box {
-  width: 100%;
-  max-width: 520px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: var(--space-md);
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.vercel-config-label {
+/* Subtle flip cue under card */
+.card-canvas-hint {
+  margin-top: var(--s-3);
   font-size: 0.78rem;
-  font-weight: 700;
-  color: var(--text-secondary);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  color: var(--ink-muted);
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-.vercel-config-status {
-  color: var(--accent-green);
-}
-
-.vercel-config-input-group {
-  display: flex;
-  gap: var(--space-sm);
-}
-
-.vercel-config-input {
-  flex: 1;
-  padding: 0.6rem 0.9rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-light);
-  background: var(--bg-canvas);
-  font-size: 0.9rem;
-  color: var(--text-primary);
-  font-family: monospace;
-  transition: border-color var(--transition-fast);
-}
-
-.vercel-config-input:focus {
-  border-color: var(--accent-gold);
-  background: #FFFFFF;
-}
-
-/* ---------------- PRINT STYLESHEET ---------------- */
+/* Print Styles */
 @media print {
   body {
     background: #FFFFFF !important;
     color: #000000 !important;
   }
 
-  /* Hide navigation, hero, controls, gallery, and portal sections in print mode */
   .app-header,
   .hero-section,
   .gallery-section,
   .map-section,
   .kadayawan-section,
   .app-footer,
-  .card-controls,
-  .vercel-config-box,
-  .card-experience-header {
+  .card-stage-info,
+  .card-canvas-hint {
     display: none !important;
   }
 
@@ -338,11 +459,13 @@
     border: none !important;
   }
 
+  .card-stage-layout {
+    display: block !important;
+  }
+
   .card-scene {
     max-width: 100% !important;
     perspective: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
   }
 
   .card-container {
@@ -373,5 +496,16 @@
 
   .card-back {
     transform: none !important;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

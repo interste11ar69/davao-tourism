@@ -119,10 +119,10 @@ export function renderMapExplorer(container, appState) {
       <section class="map-section" id="map-section" aria-label="Davao City Geographic Explorer">
         <div class="container">
           
-          <div style="text-align: center; max-width: 680px; margin: 0 auto var(--space-xl) auto;">
-            <span class="badge badge-spot" style="margin-bottom: var(--space-xs);">GEOGRAPHIC EXPLORER</span>
+          <div class="map-header">
+            <span class="overline">Geographic Explorer</span>
             <h2>Locate Destinations on the Map</h2>
-            <p>Every destination is 100% Davao City verified with exact GPS coordinates and direct Google Maps navigation routing.</p>
+            <p>Verified Davao City locations with GPS coordinates and direct Google Maps routing.</p>
           </div>
 
           <div class="map-layout-grid">

@@ -1,8 +1,8 @@
 /**
  * Interactive 3D Business Card Component
- * Renders a standard proportional (3.5" x 2.0") flippable card
- * with dynamic vector QR code targeting the user's Vercel deployment,
- * URL configurator, scan simulator, and print-ready layout.
+ * Editorial presentation of the official Davao Tourism Smart Pass (3.5" x 2.0" ratio).
+ * Features real-time vector QR generation, 3D flip interaction, print stylesheet,
+ * and clean collapsible URL destination configuration.
  */
 
 import { generateQRCodeSVG } from "../utils/qr.js";
@@ -10,134 +10,191 @@ import { generateQRCodeSVG } from "../utils/qr.js";
 export function renderBusinessCard(container, appState) {
   if (!container) return;
 
+  let isUrlDrawerOpen = false;
+
   function update() {
     const state = appState.getState();
     const qrSvg = generateQRCodeSVG({
       text: state.targetVercelUrl,
-      size: 140,
-      darkColor: "#0F172A",
+      size: 130,
+      darkColor: "#0D1117",
       lightColor: "#FFFFFF"
     });
 
-    // Extract display domain from URL
     let displayUrl = state.targetVercelUrl.replace(/^https?:\/\//, "");
 
     container.innerHTML = `
-      <section class="card-experience-section" id="business-card-section" aria-label="Interactive Business Card">
+      <section class="card-experience-section" id="business-card-section" aria-label="Official Davao Visitor Card">
         <div class="container">
-          <div class="card-experience-header">
-            <span class="badge badge-restaurant">PHYSICAL-TO-DIGITAL BRIDGE</span>
-            <h2>The Davao Tourism Business Card</h2>
-            <p>Scan the QR code with your smartphone camera to access this portal on mobile, or interact with the 3D card below.</p>
-          </div>
 
-          <!-- 3D Card Scene -->
-          <div class="card-scene">
-            <div class="card-container ${state.cardFlipped ? "is-flipped" : ""}" id="interactive-card" role="region" aria-label="3D Flippable Business Card. Click or press space to flip.">
-              <div class="card-inner">
-                
-                <!-- FRONT FACE -->
-                <div class="card-face card-front">
-                  <div class="card-front-top">
-                    <span class="card-brand-tag">DAVAO TOURISM COLLECTIVE</span>
-                    <div class="card-front-chip">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-                        <line x1="2" y1="10" x2="22" y2="10"></line>
-                      </svg>
-                      <span>SMART PASS</span>
-                    </div>
-                  </div>
+          <div class="card-stage-layout">
 
-                  <div class="card-front-center">
-                    <h3 class="card-front-title">MADAYAW DAVAO</h3>
-                    <div class="card-front-subtitle">Crown Jewel of Mindanao | Official Destination Pass</div>
-                  </div>
+            <!-- Left: Editorial Narrative & Actions -->
+            <div class="card-stage-info">
+              <span class="overline">Official Smart Pass</span>
+              <h2 class="card-stage-title">
+                The Davao <em>Visitor Pass</em>
+              </h2>
+              <p class="card-stage-desc">
+                Carry the King City of the South in your pocket. Scan the card with your smartphone camera to access this complete directory on the go, or print it as a physical keepsake.
+              </p>
 
-                  <div class="card-front-bottom">
-                    <span class="card-front-coords">7.0731 N, 125.6128 E</span>
-                    <span class="card-front-hint">Click card to flip for QR</span>
+              <ul class="card-feature-list">
+                <li class="card-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Instant access to 27 curated Davao destinations</span>
+                </li>
+                <li class="card-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Offline-ready vector QR code for mobile visitors</span>
+                </li>
+                <li class="card-feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>Standard 3.5" x 2.0" print format with bleed alignment</span>
+                </li>
+              </ul>
+
+              <div class="card-actions-row">
+                <button class="btn btn-primary" id="btn-flip-card" type="button" aria-label="Flip card to opposite side">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+                  </svg>
+                  <span>${state.cardFlipped ? "View Front Face" : "Flip to View QR Code"}</span>
+                </button>
+
+                <button class="btn btn-outline" id="btn-print-card" type="button" aria-label="Print business card">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                  </svg>
+                  <span>Print Card</span>
+                </button>
+              </div>
+
+              <!-- Unobtrusive Destination URL Customizer -->
+              <div>
+                <button class="card-url-toggle" id="btn-toggle-url-config" type="button" aria-expanded="${isUrlDrawerOpen}">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                  </svg>
+                  <span>${isUrlDrawerOpen ? "Hide link settings" : "Customize encoded link"}</span>
+                </button>
+
+                <div class="card-url-drawer ${isUrlDrawerOpen ? "" : "is-hidden"}" id="url-drawer">
+                  <label for="vercel-url-input">Target Web Address</label>
+                  <div class="card-url-input-group">
+                    <input
+                      type="text"
+                      id="vercel-url-input"
+                      class="card-url-input"
+                      value="${state.targetVercelUrl}"
+                      placeholder="https://your-domain.vercel.app"
+                    />
+                    <button class="btn btn-gold" id="btn-update-vercel-url" type="button" style="padding:0.5rem 1rem;font-size:0.82rem;">
+                      Save
+                    </button>
                   </div>
                 </div>
-
-                <!-- BACK FACE -->
-                <div class="card-face card-back">
-                  <div class="card-back-content">
-                    <div class="card-qr-box" title="Scan with your phone to open portal">
-                      ${qrSvg}
-                    </div>
-                    <div class="card-back-details">
-                      <span class="card-back-tag">MOBILE WEB DESTINATION</span>
-                      <h4 class="card-back-title">Scan to Explore Davao</h4>
-                      <div class="card-back-url">${displayUrl}</div>
-                      <p class="card-back-instructions">
-                        Point your smartphone camera at the QR code to instantly launch the Davao City curated guide.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
               </div>
             </div>
-          </div>
 
-          <!-- Card Controls -->
-          <div class="card-controls">
-            <button class="btn btn-outline" id="btn-flip-card" aria-label="Flip card to opposite side">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
-              </svg>
-              <span>${state.cardFlipped ? "Show Front Side" : "Flip Card (Show QR Code)"}</span>
-            </button>
+            <!-- Right: 3D Card Stage Canvas -->
+            <div class="card-stage-canvas">
+              <div class="card-scene">
+                <div
+                  class="card-container ${state.cardFlipped ? "is-flipped" : ""}"
+                  id="interactive-card"
+                  tabindex="0"
+                  role="button"
+                  aria-label="3D Flippable Business Card. Click or press Enter to flip."
+                >
+                  <div class="card-inner">
 
-            <button class="btn btn-primary" id="btn-enter-portal" aria-label="Enter curated tourism portal">
-              <span>Enter Tourism Portal</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </button>
+                    <!-- FRONT FACE -->
+                    <div class="card-face card-front">
+                      <div class="card-front-pattern" aria-hidden="true"></div>
 
-            <button class="btn btn-outline" id="btn-print-card" aria-label="Print physical business card">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 6 2 18 2 18 9"></polyline>
-                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-                <rect x="6" y="14" width="12" height="8"></rect>
-              </svg>
-              <span>Print / Export Card</span>
-            </button>
-          </div>
+                      <div class="card-front-top">
+                        <span class="card-front-brand">Madayaw Davao</span>
+                        <div class="card-chip">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                            <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                            <line x1="2" y1="10" x2="22" y2="10"></line>
+                          </svg>
+                          <span>VISITOR PASS</span>
+                        </div>
+                      </div>
 
-          <!-- Vercel URL Customization Box -->
-          <div class="vercel-config-box">
-            <label class="vercel-config-label" for="vercel-url-input">
-              <span>Configured Vercel Destination URL</span>
-              <span class="vercel-config-status">LIVE ENCODED IN QR</span>
-            </label>
-            <div class="vercel-config-input-group">
-              <input 
-                type="text" 
-                id="vercel-url-input" 
-                class="vercel-config-input" 
-                value="${state.targetVercelUrl}" 
-                placeholder="https://your-project.vercel.app" 
-                aria-label="Target Vercel deployment URL"
-              />
-              <button class="btn btn-accent" id="btn-update-vercel-url" type="button">
-                Update QR
-              </button>
+                      <div class="card-front-center">
+                        <h3 class="card-front-title">DAVAO CITY</h3>
+                        <div class="card-front-subtitle">Crown Jewel of Mindanao</div>
+                      </div>
+
+                      <div class="card-front-bottom">
+                        <span class="card-front-coords">7.0731 N, 125.6128 E</span>
+                        <span class="card-flip-prompt">
+                          <span>Flip for QR</span>
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+
+                    <!-- BACK FACE -->
+                    <div class="card-face card-back">
+                      <div class="card-back-grid">
+                        <div class="card-qr-box" title="Scan with camera to launch guide">
+                          ${qrSvg}
+                        </div>
+                        <div class="card-back-info">
+                          <span class="card-back-overline">Mobile Gateway</span>
+                          <h4 class="card-back-title">Scan to Explore</h4>
+                          <div class="card-back-domain">${displayUrl}</div>
+                          <p class="card-back-caption">
+                            Open with your camera to access 27 verified spots, cafes, dining, and maps.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="card-canvas-hint" aria-hidden="true">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 15l6 6m-6-6v4.5m0-4.5h4.5M9 9L3 3m6 6V4.5M9 9H4.5"></path>
+                  </svg>
+                  <span>Click card to inspect both sides</span>
+                </div>
+              </div>
             </div>
+
           </div>
 
         </div>
       </section>
     `;
 
-    // Bind Event Listeners
+    // Event Bindings
     const cardElement = container.querySelector("#interactive-card");
     if (cardElement) {
       cardElement.addEventListener("click", () => {
         appState.toggleCardFlip();
+      });
+      cardElement.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          appState.toggleCardFlip();
+        }
       });
     }
 
@@ -149,21 +206,26 @@ export function renderBusinessCard(container, appState) {
       });
     }
 
-    const enterBtn = container.querySelector("#btn-enter-portal");
-    if (enterBtn) {
-      enterBtn.addEventListener("click", () => {
-        appState.setView("portal");
-        const hero = document.getElementById("hero-section");
-        if (hero) {
-          hero.scrollIntoView({ behavior: "smooth" });
-        }
-      });
-    }
-
     const printBtn = container.querySelector("#btn-print-card");
     if (printBtn) {
       printBtn.addEventListener("click", () => {
         window.print();
+      });
+    }
+
+    const urlToggleBtn = container.querySelector("#btn-toggle-url-config");
+    if (urlToggleBtn) {
+      urlToggleBtn.addEventListener("click", () => {
+        isUrlDrawerOpen = !isUrlDrawerOpen;
+        const drawer = container.querySelector("#url-drawer");
+        if (drawer) {
+          drawer.classList.toggle("is-hidden", !isUrlDrawerOpen);
+          urlToggleBtn.setAttribute("aria-expanded", isUrlDrawerOpen);
+          const span = urlToggleBtn.querySelector("span");
+          if (span) {
+            span.textContent = isUrlDrawerOpen ? "Hide link settings" : "Customize encoded link";
+          }
+        }
       });
     }
 
@@ -174,6 +236,7 @@ export function renderBusinessCard(container, appState) {
         const val = urlInput.value.trim();
         if (val) {
           appState.setVercelUrl(val);
+          isUrlDrawerOpen = false;
         }
       };
       updateUrlBtn.addEventListener("click", handleUrlUpdate);
@@ -186,8 +249,6 @@ export function renderBusinessCard(container, appState) {
     }
   }
 
-  // Subscribe to state changes
-  appState.subscribe(() => {
-    update();
-  });
+  update();
+  appState.subscribe(() => update());
 }
