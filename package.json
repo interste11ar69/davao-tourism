@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "python3 -m http.server 3000",
     "serve": "python3 -m http.server 3000",
-    "build": "node scripts/verify-system.js",
     "verify": "node scripts/verify-system.js",
     "fetch-images": "python3 scripts/fetch-images.py"
   },
