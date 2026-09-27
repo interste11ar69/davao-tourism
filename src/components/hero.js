@@ -1,97 +1,50 @@
-/**
- * Hero Section and Davao Heritage Spotlight Component.
- * Editorial left-anchored layout. No fake stat numbers.
- * Kadayawan section: text on photography, no frosted card.
- */
+import { stories } from '../data/stories.js';
 
-import { davaoIcons } from "../data/locations.js";
+const questions = [
+  { id: 'first-time', question: 'First time in Davao?', answer: 'Start here' },
+  { id: 'family', question: 'With the family?', answer: 'Find a day out' },
+  { id: 'tonight', question: 'Going out tonight?', answer: 'See evening stops' },
+  { id: 'food', question: 'Looking for food?', answer: 'Find a table' },
+  { id: 'stay', question: 'Need a place to stay?', answer: 'Compare city bases' }
+];
 
 export function renderHero(container, appState) {
   if (!container) return;
-
-  const iconsHtml = davaoIcons
-    .map(
-      (icon) => `
-      <div class="kadayawan-item">
-        <span class="kadayawan-item-sub">${icon.subtitle}</span>
-        <h4>${icon.name}</h4>
-        <p>${icon.description}</p>
-      </div>
-    `
-    )
-    .join("");
-
   container.innerHTML = `
-    <section class="hero-section" id="hero-section" aria-label="Davao City Tourism">
-      <div class="hero-scrim" aria-hidden="true"></div>
-
-      <div class="container">
-        <div class="hero-content">
-
-          <span class="overline hero-overline">Davao City, Mindanao</span>
-
-          <h1 class="hero-title">
-            The Crown Jewel<br>of <em>Mindanao</em>
-          </h1>
-
-          <p class="hero-lead">
-            From Mount Apo's summit to the coral gardens of Samal Island. Kadayawan's living culture, single-origin coffee, and tuna fresh from the Gulf. This is Davao.
-          </p>
-
-          <div class="hero-cta-row">
-            <a href="#gallery-section" class="btn btn-gold" id="hero-cta-explore">
-              Browse 27 Venues
-            </a>
-            <a href="#map-section" class="btn-hero-ghost" id="hero-cta-map">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
-                <line x1="8" y1="2" x2="8" y2="18"></line>
-                <line x1="16" y1="6" x2="16" y2="22"></line>
-              </svg>
-              Interactive Map
-            </a>
-          </div>
-
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-photo" role="img" aria-label="Davao City skyline from Shrine Hills"></div>
+      <div class="hero-shade"></div>
+      <div class="shell hero-inner">
+        <div class="hero-copy">
+          <p class="hero-location">A local guide to Davao City</p>
+          <h1 id="hero-title">Where to,<br>Davao?</h1>
+          <p class="hero-intro">The places worth telling a visitor about, gathered in one easy guide. Choose what kind of day you want, then let Maps take you there.</p>
+          <a class="hero-link" href="#questions">Find your Davao stop <span aria-hidden="true">↓</span></a>
+          <p class="hero-byline">Created by Lance C. Lastimosa</p>
         </div>
+        <div class="hero-side-note"><span>Madayaw</span><small>A Dabawenyo welcome</small></div>
       </div>
     </section>
-
-    <section class="kadayawan-section" id="kadayawan-section" aria-label="Kadayawan Cultural Heritage">
-      <div class="kadayawan-scrim" aria-hidden="true"></div>
-
-      <div class="container">
-        <div class="kadayawan-inner">
-          <div class="kadayawan-header">
-            <span class="overline">Annual Festival</span>
-            <h2>Kadayawan:<br>Thanksgiving of a City</h2>
-            <p>
-              From the Dabawenyo greeting "Madayaw" (precious, good, beautiful). Each August, 11 indigenous and Moro tribes unite in street dancing, floral floats, and harvest celebration.
-            </p>
-          </div>
-
-          <div class="kadayawan-grid">
-            ${iconsHtml}
-          </div>
+    <section class="questions" id="questions" aria-labelledby="questions-title">
+      <div class="shell">
+        <div class="questions-heading"><p class="section-kicker">The questions we hear</p><h2 id="questions-title">What sounds like your day?</h2></div>
+        <div class="question-list">
+          ${questions.map(q => `<button type="button" class="question" data-intent="${q.id}"><span>${q.question}</span><small>${q.answer}</small><span class="question-arrow" aria-hidden="true">↗</span></button>`).join('')}
         </div>
       </div>
     </section>
   `;
+  container.querySelectorAll('[data-intent]').forEach(button => button.addEventListener('click', () => {
+    appState.setIntent(button.dataset.intent);
+    document.getElementById('places')?.scrollIntoView({ behavior: 'smooth' });
+  }));
+}
 
-  const exploreBtn = container.querySelector("#hero-cta-explore");
-  if (exploreBtn) {
-    exploreBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const gallery = document.getElementById("gallery-section");
-      if (gallery) gallery.scrollIntoView({ behavior: "smooth" });
-    });
-  }
-
-  const mapBtn = container.querySelector("#hero-cta-map");
-  if (mapBtn) {
-    mapBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const mapSection = document.getElementById("map-section");
-      if (mapSection) mapSection.scrollIntoView({ behavior: "smooth" });
-    });
-  }
+export function renderStory(container) {
+  if (!container) return;
+  const story = stories[0];
+  container.innerHTML = `<section class="story" id="kadayawan" aria-labelledby="story-title">
+    <div class="story-image"><img src="${story.image.path}" alt="${story.image.alt}" loading="lazy"><span>Kadayawan festival scene</span></div>
+    <div class="story-copy"><p class="section-kicker">A city with a story</p><h2 id="story-title">${story.title}</h2><p>${story.body}</p><a href="${story.sources[0].url}" target="_blank" rel="noopener noreferrer">Read the city account <span aria-hidden="true">↗</span></a></div>
+  </section>`;
 }

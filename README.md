@@ -1,133 +1,44 @@
-# Madayaw Davao: Curated Tourism Portal & QR Business Card
+# Madayaw Davao
 
-A modern, editorial web application providing a physical-to-digital bridge for visitors and travelers exploring Davao City, Philippines. The project combines an interactive 3D flippable business card with a scannable QR code that redirects directly to a curated tourism showcase, designed specifically for zero-configuration deployment on Vercel.
+A phone-first Davao City visitor guide created by Lance C. Lastimosa. It is designed for the questions a taxi passenger might ask: where to go, where to eat, where to get coffee, and where to stay. The site is an independent student project, not a government tourism service.
 
----
+## Run locally
 
-## 1. Core Features
+Requirements: Python 3 for the local static server, Node.js for checks.
 
-### Physical-to-Digital 3D Business Card
-- **Proportional Geometry:** Conforms to the standard 3.5in x 2.0in physical business card ratio (1.75:1).
-- **Interactive 3D Perspective:** Smooth 60fps card flip animation toggled by clicking or pressing dedicated controls.
-- **Dynamic Vector QR Code Generator:** Implemented in pure JavaScript without external third-party dependencies or tracking endpoints.
-- **Vercel Destination Target:** Pre-configured to encode the live Vercel deployment URL (e.g., `https://davao-tourism.vercel.app` or the current active deployment origin).
-- **Live URL Customizer:** Built-in control panel allows users and ambassadors to type their custom Vercel domain and instantly re-render the vector QR code.
-- **Print & Export Stylesheet:** Dedicated `@media print` rules format the card front and back side-by-side with crop marks ready for physical print production.
-
-### Curated 100% Davao-Only Directory
-All 27 venues are strictly based within Davao City across four categories:
-1. **Tourist Spots (8 venues):** Philippine Eagle Center, Eden Nature Park and Resort, Malagos Garden Resort & Chocolate Museum, People's Park, Roxas Avenue Night Market, D' Bone Collector Museum, Davao Crocodile Park, Jack's Ridge.
-2. **Restaurants (7 venues):** Balik Bukid Farm + Kitchen, Rekado Filipino Comfort Cuisine, Blue Posts Boiling Crabs, Tiny Kitchen, Yellow Fin Seafood Restaurant, Claude's Le Cafe de Ville, Marina Tuna.
-3. **Specialty Cafes (6 venues):** Glasshouse Coffee at Oboza, Purge Coffee Roaster, Fourth Street Cafe, Stash Coffee Co., Paramount Coffee Roasters, Kape Fabrika.
-4. **Hotels & Stays (6 venues):** Dusit Thani Residence Davao, Pearl Farm Beach Resort, Seda Abreeza, The Apo View Hotel, Waterfront Insular Hotel, Hop Inn Hotel Davao.
-
-### Modern Editorial Design System
-- **Balanced Visual Hierarchy:** Harmonious equilibrium alternating between high-contrast gallery white space (`#FFFFFF` and `#FAFAFA`) and full-bleed high-resolution background photography.
-- **Atmospheric Backdrops with Protected Contrast:** Hero section and Kadayawan cultural feature use high-definition photography paired with gradient scrims and frosted translucent cards (`backdrop-filter: blur(16px)`).
-- **Zero Visual Clutter:** Large, clean typography (`clamp()` scale), wide section margins (80px to 120px), no flashing ads, no auto-playing media, and no crowded sidebars.
-- **Dabawenyo Cultural Roots:** Visual accents inspired by Kadayawan harvest gold, rainforest pine green, and Bagobo-Tagabawa inabal textiles.
-
-### Google Maps Navigation
-- Every destination includes verified latitude and longitude coordinates.
-- Direct "View on Google Maps" buttons generate turn-by-turn routing and place search queries.
-- Interactive Geographic Explorer plots all venues proportionally over Davao City and the Gulf, with distance calculations from Davao City Hall.
-
----
-
-## 2. Directory Structure
-
-```
-davao-tourism/
-|-- assets/
-|   `-- images/
-|       |-- hero-davao.jpg               # High-res hero backdrop (Mount Apo & skyline)
-|       |-- kadayawan-backdrop.jpg       # High-res Kadayawan festival dancing backdrop
-|       |-- spots/                       # 8 high-res tourist spot photos
-|       |-- restaurants/                 # 7 high-res restaurant photos
-|       |-- cafes/                       # 6 high-res cafe photos
-|       `-- hotels/                      # 6 high-res hotel photos
-|-- docs/
-|   |-- SPEC.md                          # Discovery & specification requirements
-|   |-- ARCHITECTURE.md                  # System architecture, schemas, and contracts
-|   `-- TASKS.md                         # Dependency-ordered atomic execution plan
-|-- scripts/
-|   |-- fetch-images.py                  # Image acquisition and fallback asset generator
-|   `-- verify-system.js                 # Automated data validation and system audit
-|-- src/
-|   |-- components/
-|   |   |-- business-card.js             # 3D flippable business card and print engine
-|   |   |-- hero.js                      # Hero section with balanced backdrop
-|   |   |-- location-grid.js             # Image-driven location cards & search
-|   |   |-- map-explorer.js              # Geographic visualizer & distance calculator
-|   |   |-- modal-detail.js              # Full-feature location detail modal
-|   |   `-- navbar.js                    # Sticky header & category filter pills
-|   |-- data/
-|   |   `-- locations.js                 # Curated database of 27 Davao City venues
-|   |-- state/
-|   |   `-- app-state.js                 # Reactive application state manager
-|   |-- styles/
-|   |   |-- base.css                     # Reset, typography scale, CSS custom properties
-|   |   |-- card.css                     # 3D perspective transforms & print styles
-|   |   |-- portal.css                   # Gallery grid, backdrop scrims & transitions
-|   |   `-- map.css                      # Map layout & pin visualizer styles
-|   |-- utils/
-|   |   |-- maps.js                      # Google Maps navigation & coordinate helpers
-|   |   `-- qr.js                        # Pure JavaScript vector SVG QR code generator
-|   `-- app.js                           # Application bootstrap & lifecycle coordinator
-|-- index.html                           # Main semantic HTML5 document
-|-- package.json                         # Project execution scripts
-|-- vercel.json                          # Vercel SPA routing rewrites & caching rules
-`-- README.md                            # Complete operational documentation
+```sh
+npm run dev
 ```
 
----
+Open the local address printed by the server. Run the checks with:
 
-## 3. Local Development
-
-To run the application locally:
-
-```bash
-# Option 1: Using Python's built-in HTTP server
-python3 -m http.server 3000
-
-# Option 2: Using Node or Deno
-npx serve .
-# or
-deno serve --port 3000
+```sh
+npm run verify
+npm run verify -- --final
 ```
 
-Open `http://localhost:3000` in any modern web browser.
+The site uses static HTML, CSS, JavaScript modules, and local WebP photos. Vercel serves it without a build step.
 
----
+## Visitor guide
 
-## 4. Vercel Deployment Instructions
+The first screen asks five common visitor questions. Each shortcut filters a small, sourced city-only directory. Every place has a Google Maps search and directions handoff, a district, and a reason to consider it. Upland outings are labeled so they are not confused with quick downtown stops. Hours, prices, and availability are intentionally omitted; visitors should check them before leaving.
 
-The repository is pre-configured with `vercel.json` for zero-configuration static hosting on Vercel.
+The place data is in `src/data/locations.js`; the Kadayawan introduction is in `src/data/stories.js`. Sources and photo credits are recorded in `docs/SOURCES.md`. Check facts again before changing recommendations. A latitude/longitude bounding box does not prove that an address is inside Davao City; review the address against the source and Maps.
 
-### Deploying via Vercel CLI
-```bash
-# Install Vercel CLI globally (if not already installed)
-npm i -g vercel
+## Physical card
 
-# Deploy directly from the project directory
-vercel
-```
+`card.html` previews both sides. Download print-size SVG faces from that page. The static QR in `assets/card/card-back.svg` and `assets/card/visitor-guide-qr.svg` encodes `https://davao-tourism.vercel.app/`. The site contains no QR generator or URL editor.
 
-### Deploying via GitHub / Git Repository
-1. Push this repository to GitHub or GitLab.
-2. In the Vercel dashboard, click "Add New Project" and import this repository.
-3. Framework Preset: Select "Other" (Static HTML).
-4. Root Directory: `./` (or `davao-tourism`).
-5. Click "Deploy".
+Print at 3.5 by 2 inches and 100% scale. Ask the print shop about bleed, trim, and safe area. Make one physical proof on the chosen stock and scan it with two different phones before ordering a batch. Keep the QR's white margin clear and use the printed URL as a fallback.
 
-Vercel will automatically serve `index.html`, route all paths according to `vercel.json`, and cache static assets on its global edge network.
+If the production address ever changes, create a new static QR and replace both the QR-only asset and the embedded QR in the back artwork before printing new cards. Already printed cards will keep pointing at the old address.
 
----
+## Images and rights
 
-## 5. Automated Verification
+Five resized Commons images are used, with creator and license attribution in the site footer and `docs/SOURCES.md`. They retain their respective Creative Commons licenses. The project's package metadata does not grant rights to relicense those photos. Business listings without a suitable licensed venue photo use typographic artwork rather than an unrelated image.
 
-Run the test suite to validate all location data, coordinate bounds, image assets, QR generation, and `vercel.json` syntax:
+To refresh those five source images, install Pillow and run `python3 scripts/fetch-images.py`. Review license and subject before adding any new photograph.
 
-```bash
-node scripts/verify-system.js
-```
+## Deployment
+
+The configured GitHub origin is connected to the existing Vercel project. Production address: `https://davao-tourism.vercel.app/`. Use the production domain for printed QR codes; individual preview deployment addresses are not card destinations. Confirm the public page after each production update.

@@ -1,153 +1,41 @@
-# Task Matrix: Davao Tourism QR Business Card & Portal
+# Madayaw Davao: Task matrix
 
-## Dependency-Ordered Work Breakdown Structure (WBS)
+Status: Approved for execution on 2026-09-27. Execute one task at a time after the checkpoint, with a pass/fail verification and checkpoint report.
 
-```
-[Task 1: Scaffolding & Vercel Config] --> [Task 2: Data Models] --> [Task 3: Core Utils & Vercel QR]
-                                                |                                    |
-                                                v                                    v
-       [Task 4: High-Res Image Pipeline] -> [Task 5: App State] -> [Task 6: CSS Balanced Design System]
-                                                                          |
-                                                                          v
-                                                     [Task 7: Business Card & Vercel QR Component]
-                                                     [Task 8: Navbar & Filters]
-                                                     [Task 9: Balanced Hero & Heritage Backdrops]
-                                                     [Task 10: Location Grid & White Space Gallery]
-                                                     [Task 11: Map & Modal]
-                                                                          |
-                                                                          v
-                                                     [Task 12: App Wiring & Shell]
-                                                                          |
-                                                                          v
-                                                     [Task 13: System QA, High-Res & Vercel Audit]
-```
+| ID | Depends on | Files and work | Binary DoD | Verification |
+|---|---|---|---|---|
+| T01 | None | Audit venues, claims, media; create `docs/SOURCES.md` | Every retained fact has source/date and every retained image has creator, source, license, or is removed | Manual source comparison; `test -f docs/SOURCES.md` |
+| T02 | T01 | Revise `src/data/locations.js`; add `src/data/stories.js` | Published places are in Davao City; Pearl Farm excluded; Kadayawan text is sourced | `npm run verify` and manual source/Maps review |
+| T03 | T01 | Optimize/replace `assets/images/**`; revise `scripts/fetch-images.py` | Images depict named subject or are labeled context; rights recorded; budget met | Image metadata/size audit and `npm run verify` |
+| T03A | T02,T03 | Add taxi-passenger recommendations in `src/data/locations.js` and `docs/SOURCES.md` | First-time, family, tonight, food, and stay each return at least two relevant places; upland trips are labeled | `npm run verify` and manual question-to-place review |
+| T04 | T02 | Update `src/utils/maps.js`, `scripts/verify-system.js` | Maps identify places; verifier rejects missing sources, assets, and Samal; its final mode rejects runtime QR code after T09 | `npm run verify`; manual Maps opens; `npm run verify -- --final` after T09 |
+| T05 | T02 | Simplify `src/state/app-state.js`; remove `src/utils/qr.js`, `src/components/business-card.js` | No QR generation, URL editor, or flip state remains | `rg 'generateQRCode|targetVercelUrl|renderBusinessCard' src` returns no matches |
+| T06 | T02,T03,T03A | Set visual direction; rebuild `src/styles/base.css`, `src/styles/portal.css`, `src/components/hero.js` | Distinct Davao hero/story and question-led shortcuts, readable contrast, responsive layout | Browser checks at 320/390/768/1440 px; contrast check |
+| T07 | T02,T04,T05,T06 | Rework `src/components/navbar.js`, `src/components/location-grid.js`, `src/components/modal-detail.js`; minimally wire `src/app.js` for browser verification | Category, search, detail, keyboard, and Maps actions work; typing keeps focus | Manual keyboard/phone flow and `npm run verify` |
+| T08 | T02,T04,T06 | Correct `src/components/map-explorer.js`, `src/styles/map.css`; mount from `src/app.js` | Geography labeled honestly; every place has Maps exit | Manual mobile and desktop geographic review |
+| T09 | T05,T06,T07,T08 | Rewire `index.html`, `src/app.js`, `vercel.json` | No site QR UI, working links, accurate metadata/routing, visible Lance C. Lastimosa footer credit | Local browser smoke check; `npm run verify` |
+| T10 | T06,T09 | Redesign `card.html`, `src/styles/card.css`, `assets/card/**` | Distinct front/back art, static QR for confirmed URL, URL fallback and creator credit, no runtime QR generator | Print CSS at actual size; independent QR decoder on rendered card; physical two-phone proof required before bulk printing |
+| T11 | T01-T10 | Update `README.md`, `docs/AUDIT.md`, `package.json` as needed | Instructions, audit, and author metadata credit Lance C. Lastimosa and reflect measured implementation | Follow README locally; `npm run verify` |
+| T12 | T11 | Full QA, Git commit, and GitHub push | Journeys pass, no unsupported claims/stubs, tests and browser/print proof recorded, commit pushed to origin | `npm run verify`, browser/print checklist, `git status --short`, `git log -1 --oneline`, `git ls-remote origin HEAD` |
 
----
+The confirmed production URL is https://davao-tourism.vercel.app/. GitHub push is included. Verify the resulting Vercel production page after push.
 
-### Task 1: Scaffolding, Directory Setup, and Vercel Configuration [COMPLETED]
-- **Status:** Completed
-- **Description:** Initialize project directory structure (`davao-tourism/` and subdirectories `assets/images/`, `src/`, `scripts/`, `docs/`), create `package.json` with execution scripts, and generate `vercel.json` with SPA routing rewrites and static asset caching.
-- **Files to create/modify:** `package.json`, `vercel.json`
-- **Definition of Done:** Project folder hierarchy created, `vercel.json` is syntactically valid JSON with `/((?!assets/).*)` rewrites, and `package.json` contains scripts for dev, build, and verification.
-- **Verification Method:** `test -f package.json && test -f vercel.json && node -e 'JSON.parse(fs.readFileSync("vercel.json"))' && echo "Scaffolding & Vercel PASS"`
-- **Outcome:** Verified PASS. Project structure, package.json, and vercel.json initialized and tested.
+The T04 final-mode QR check runs after T09 because T05/T09 remove the old UI imports. This dependency correction was recorded before implementing T04.
+T03A was added after the taxi-driver use case was clarified. It is completed before T04 is closed.
+T07 includes minimal app bootstrap wiring so its browser behavior can be verified before T08. T09 remains the final document/footer/routing pass.
+T10's physical two-phone proof is a print-production step the project owner must perform with the chosen stock and printer. Engineering verifies print geometry and software decodability; the final audit must say plainly that physical stock was not tested here.
 
----
+## Execution checkpoints
 
-### Task 2: Curated Davao City Locations Database [COMPLETED]
-- **Status:** Completed
-- **Description:** Create `src/data/locations.js` containing complete, verified data for Davao City venues across all 4 categories (Tourist Spots, Restaurants, Cafes, Hotels). Include precise coordinates, full addresses, highlights, tags, and local high-resolution asset paths.
-- **Files to create/modify:** `src/data/locations.js`
-- **Definition of Done:** Minimum 24 verified Davao-only locations defined with all required schema fields (id, name, category, district, address, coordinates, googleMapsUrl, highlights, description, image).
-- **Verification Method:** `node -e 'const { locations } = await import("./src/data/locations.js"); console.log("Total locations:", locations.length); if (locations.length < 20) process.exit(1);'`
-- **Outcome:** Verified PASS. 27 verified Davao City locations, 11 Kadayawan tribes, and 4 icons created with 100% schema compliance.
-
----
-
-### Task 3: Core Utilities (Vercel-Targeted QR Matrix Generator & Google Maps Helper) [COMPLETED]
-- **Status:** Completed
-- **Description:** Implement pure JavaScript vector SVG QR code generator in `src/utils/qr.js` (no external runtime API needed, encoding Vercel URL payload) and Google Maps URL/coordinate generator in `src/utils/maps.js`.
-- **Files to create/modify:** `src/utils/qr.js`, `src/utils/maps.js`
-- **Definition of Done:** `generateQRCodeSVG()` returns valid SVG markup for the Vercel link; `buildGoogleMapsUrl()` generates working Google Maps search and navigation URLs.
-- **Verification Method:** `node -e 'import("./src/utils/qr.js").then(m => { const svg = m.generateQRCodeSVG({ text: "https://davao-tourism.vercel.app", size: 200 }); if (!svg.includes("<svg")) process.exit(1); console.log("QR Utility PASS"); });'`
-- **Outcome:** Verified PASS. Pure JS QR generator renders vector SVG matrices and data URLs; maps.js formats Google Maps navigation URLs and coordinate displays.
-
----
-
-### Task 4: High-Resolution Image Acquisition and Asset Pipeline [COMPLETED]
-- **Status:** Completed
-- **Description:** Create and run `scripts/fetch-images.py` to download, optimize, and store curated high-resolution (1080p+ for backdrops, 800px+ for cards) photography for Davao City landmarks, Kadayawan cultural dance, restaurants, cafes, and hotels in `assets/images/`.
-- **Files to create/modify:** `scripts/fetch-images.py`, `assets/images/**`
-- **Definition of Done:** High-resolution local image files exist for all location cards, hero backdrop, and Kadayawan spotlights, meeting minimum dimension requirements.
-- **Verification Method:** `python3 scripts/fetch-images.py && test -f assets/images/hero-davao.jpg && echo "Images PASS"`
-- **Outcome:** Verified PASS. 29 out of 29 high-resolution image assets downloaded and stored in assets/images/ without fallback degradation.
-
----
-
-### Task 5: Reactive Application State Store [COMPLETED]
-- **Status:** Completed
-- **Description:** Implement `src/state/app-state.js` as an event-driven store managing active view (`"portal"` vs `"card"`), active category, search query, selected location ID, card flip status, and customizable Vercel target URL.
-- **Files to create/modify:** `src/state/app-state.js`
-- **Definition of Done:** State changes trigger registered listener callbacks cleanly with zero race conditions, including updating the Vercel destination URL.
-- **Verification Method:** `node -e 'import("./src/state/app-state.js").then(m => { const store = m.createAppState(); store.subscribe((s) => console.log("Vercel Target:", s.targetVercelUrl)); store.setVercelUrl("https://my-davao.vercel.app"); });'`
-- **Outcome:** Verified PASS. Reactive event-driven state store manages views, categories, search, modal selection, card flip, and dynamic Vercel URLs.
-
----
-
-### Task 6: Balanced Editorial Design System & Styling [COMPLETED]
-- **Status:** Completed
-- **Description:** Create responsive CSS stylesheets (`src/styles/base.css`, `src/styles/card.css`, `src/styles/portal.css`, `src/styles/map.css`) implementing the equilibrium between white space and background imagery: gradient scrims, frosted translucent cards (`backdrop-filter`), fluid typography scale, 3D card perspective, and print rules.
-- **Files to create/modify:** `src/styles/base.css`, `src/styles/card.css`, `src/styles/portal.css`, `src/styles/map.css`
-- **Definition of Done:** Styles render without syntax errors, establish macro/micro white space, high-contrast overlay scrims for background images, and responsive layouts from 320px to 4K displays.
-- **Verification Method:** `test -f src/styles/base.css && test -f src/styles/card.css && test -f src/styles/portal.css && echo "CSS PASS"`
-- **Outcome:** Verified PASS. Base typography scale, 3D flippable card system, print media rules, gallery grid, and map explorer stylesheets created.
-
----
-
-### Task 7: Interactive 3D Business Card & Vercel QR Component [COMPLETED]
-- **Status:** Completed
-- **Description:** Implement `src/components/business-card.js` rendering a physical-proportional (3.5" x 2") business card with 3D flip interaction, dynamic high-contrast vector QR code pointing to Vercel, live Vercel URL editor, NFC tap zone, printable view, and "Scan / Click to Enter Portal" action.
-- **Files to create/modify:** `src/components/business-card.js`
-- **Definition of Done:** Card renders with front and back faces, flips smoothly on click, displays scannable QR code encoding the Vercel deployment link, and updates QR code dynamically if URL is modified.
-- **Verification Method:** `grep -q "renderBusinessCard" src/components/business-card.js && echo "Business Card PASS"`
-- **Outcome:** Verified PASS. 3D card perspective container, flip handler, vector QR generator integration, print rules, and Vercel URL input editor operational.
-
----
-
-### Task 8: Navigation Bar & Category Filter Pills [COMPLETED]
-- **Status:** Completed
-- **Description:** Implement `src/components/navbar.js` with sticky modern header, brand identity ("MADAYAW DAVAO"), category filter tabs (All, Tourist Spots, Restaurants, Cafes, Hotels), view switcher, and mobile drawer.
-- **Files to create/modify:** `src/components/navbar.js`
-- **Definition of Done:** Category switching updates active state, highlights selected pill, and filters location cards instantaneously without reload.
-- **Verification Method:** `grep -q "renderNavbar" src/components/navbar.js && echo "Navbar PASS"`
-- **Outcome:** Verified PASS. Responsive sticky navigation bar, category pill filter buttons, and view mode actions implemented.
-
----
-
-### Task 9: Hero Section & Davao Heritage Spotlight with Balanced Backdrops [COMPLETED]
-- **Status:** Completed
-- **Description:** Implement `src/components/hero.js` delivering an atmospheric, high-impact hero showcase with cinematic high-resolution Davao backdrop, high-contrast typography overlays, Kadayawan harvest icons (Mount Apo, Philippine Eagle, Durian, Waling-Waling), and quick stats.
-- **Files to create/modify:** `src/components/hero.js`
-- **Definition of Done:** Hero section mounts properly, displays high-resolution background imagery with scrim overlay, and maintains WCAG 2.1 AA text legibility.
-- **Verification Method:** `grep -q "renderHero" src/components/hero.js && echo "Hero PASS"`
-- **Outcome:** Verified PASS. Atmospheric hero section with directional scrim, bold typography, key metrics, and frosted glass Kadayawan heritage spotlight operational.
-
----
-
-### Task 10: Curated Location Gallery Grid & White Space Cards [COMPLETED]
-- **Status:** Completed
-- **Description:** Implement `src/components/location-grid.js` rendering image-centric cards set upon clean white space canvas with large bold headers, district badges, highlights, and direct "View on Google Maps" buttons.
-- **Files to create/modify:** `src/components/location-grid.js`
-- **Definition of Done:** Location cards render smoothly in responsive grid with generous gutters, respond to category filters and search queries, and provide direct links to Google Maps.
-- **Verification Method:** `grep -q "renderLocationGrid" src/components/location-grid.js && echo "Location Grid PASS"`
-- **Outcome:** Verified PASS. Responsive location grid with instant text search, category filtering, clean typography, and direct Google Maps buttons operational.
-
----
-
-### Task 11: Interactive Map Explorer & Location Detail Modal [COMPLETED]
-- **Status:** Completed
-- **Description:** Implement `src/components/map-explorer.js` (embedded interactive map showing Davao locations with category pins) and `src/components/modal-detail.js` (full-bleed high-res photography, full highlights, and direct navigation actions).
-- **Files to create/modify:** `src/components/map-explorer.js`, `src/components/modal-detail.js`
-- **Definition of Done:** Map view plots Davao pins accurately; clicking any card opens detail modal with verified address and Google Maps routing.
-- **Verification Method:** `grep -q "renderMapExplorer" src/components/map-explorer.js && grep -q "renderLocationModal" src/components/modal-detail.js && echo "Map and Modal PASS"`
-- **Outcome:** Verified PASS. Spatial map visualizer with distance calculation from Davao City Hall, category-coded pins, floating card overlay, and full detail modal operational.
-
----
-
-### Task 12: Application Bootstrap & HTML Shell [COMPLETED]
-- **Status:** Completed
-- **Description:** Create `index.html`, `src/app.js`, and `README.md` to mount all components, manage lifecycle, and document operations including one-click Vercel deployment instructions.
-- **Files to create/modify:** `index.html`, `src/app.js`, `README.md`
-- **Definition of Done:** Application loads seamlessly in modern web browser, mounts both business card and portal views, and documentation provides clear run and Vercel deploy instructions.
-- **Verification Method:** `grep -q "app.js" index.html && echo "Bootstrap PASS"`
-- **Outcome:** Verified PASS. Semantic HTML5 entry document, component lifecycle mount coordinator in src/app.js, and comprehensive README documentation created.
-
----
-
-### Task 13: System QA, High-Resolution Assets, and Vercel Audit [COMPLETED]
-- **Status:** Completed
-- **Description:** Create `scripts/verify-system.js` to programmatically validate all location records (coordinates, addresses, image files), image resolutions, QR generation encoding Vercel URL, `vercel.json` validity, CSS integrity, and responsive layout.
-- **Files to create/modify:** `scripts/verify-system.js`
-- **Definition of Done:** Automated test script executes and exits with code 0 (100% checks passing).
-- **Verification Method:** `node scripts/verify-system.js`
-- **Outcome:** Verified PASS (22 of 22 checks passing). Data integrity, image assets, pure JS QR engine, Vercel SPA routing, stylesheets, and zero-placeholder/emoji compliance verified.
+- T01 complete: docs/SOURCES.md created; ten candidate venues have city/operator sources and five retained images have creator, source, and license. Verification: `test -f docs/SOURCES.md` passed. Next: T02.
+- T02 complete: `src/data/locations.js` now has ten sourced city places and `src/data/stories.js` has one sourced cultural story. Verification: data import check passed. The old verifier is replaced in T04. Next: T03.
+- T03 complete: five credited photos converted to WebP; unrelated JPGs removed; image pipeline now reproduces the kept assets. Verification: five valid images, each under 500 KB; folder 604 KB. Next: T04.
+- T03A complete: added Philippine Eagle Center, Eden Nature Park, and Jack's Ridge plus intent and area tags. Verification: all five passenger questions return at least two places; 13 city places pass verifier. Next: T04.
+- T04 complete: Maps links now use place identity; verifier checks sources, scope, assets, and intent coverage. Verification: `npm run verify` and three sample Maps query checks passed. Final-mode QR check waits until T09. Next: T05.
+- T05 complete: simplified `src/state/app-state.js`; removed runtime QR and business-card components. Verification: old symbols absent from src and `npm run verify` passed. `src/app.js` and `card.html` are rewired in T09/T10. Next: T06.
+- T06 complete: field-guide visual direction, skyline hero, taxi-question shortcuts, Kadayawan story, and responsive base/portal CSS. Verification: JS syntax and CSS presence passed; viewport checks are repeated after T09 wiring. Next: T07.
+- T07 complete: navigation, stable search, results, detail dialog, source display, and Maps actions. Verification: Playwright phone flow passed question shortcut, search focus, place detail, two Maps links, Escape, and no page errors; `npm run verify` passed. Next: T08.
+- T08 complete: replaced faux map with four honest city-area groups and Maps handoffs. Verification: Playwright at 390 and 1440 px found four groups, 13 Maps links, and no horizontal overflow. Next: T09.
+- T09 complete: final visitor document, metadata, Lance C. Lastimosa footer credit, photo credits, story ordering, and Vercel static config. Verification: Playwright at 320/390/768/1440 px found no page errors or overflow; `npm run verify` passed. Next: T10.
+- T10 complete for digital artwork: two 3.5 x 2 inch SVG faces, embedded static QR, readable address, and Lance C. Lastimosa credit. Verification: browser print rectangles 336 x 192 CSS px, phone layout passed, zxing-cpp decoded rendered card QR to the confirmed URL. Physical two-phone proof remains a pre-bulk-print owner step. Next: T11.
+- T11 complete: README, package author/license metadata, and evidence-based audit updated. Verification: local server procedure used throughout; `npm run verify -- --final` passed. Next: T12.

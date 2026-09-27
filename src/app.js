@@ -1,102 +1,24 @@
-/**
- * Davao Tourism Application Bootstrap
- * Orchestrates component mounting, reactive state binding,
- * view transitions, and deployment environment detection.
- */
+import { createAppState } from './state/app-state.js';
+import { renderNavbar } from './components/navbar.js';
+import { renderHero, renderStory } from './components/hero.js';
+import { renderLocationGrid } from './components/location-grid.js';
+import { renderMapExplorer } from './components/map-explorer.js';
+import { renderLocationModal } from './components/modal-detail.js';
 
-import { createAppState } from "./state/app-state.js";
-import { renderNavbar } from "./components/navbar.js";
-import { renderBusinessCard } from "./components/business-card.js";
-import { renderHero } from "./components/hero.js";
-import { renderLocationGrid } from "./components/location-grid.js";
-import { renderMapExplorer } from "./components/map-explorer.js";
-import { renderLocationModal } from "./components/modal-detail.js";
+const appState = createAppState();
+renderNavbar(document.getElementById('navbar-mount'), appState);
+renderHero(document.getElementById('hero-mount'), appState);
+renderLocationGrid(document.getElementById('gallery-mount'), appState);
+renderStory(document.getElementById('story-mount'));
+renderMapExplorer(document.getElementById('map-mount'));
+renderLocationModal(document.getElementById('modal-mount'), appState);
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Automatically detect live hosting domain (e.g. Vercel deployment URL)
-  let initialVercelUrl = "https://davao-tourism.vercel.app";
-  if (
-    typeof window !== "undefined" &&
-    window.location &&
-    window.location.origin &&
-    !window.location.origin.startsWith("file://") &&
-    !window.location.origin.includes("localhost") &&
-    !window.location.origin.includes("127.0.0.1")
-  ) {
-    initialVercelUrl = window.location.origin;
-  }
-
-  // Initialize Application State
-  const appState = createAppState({
-    targetVercelUrl: initialVercelUrl
-  });
-
-  // Mount Components
-  const navbarMount = document.getElementById("navbar-mount");
-  const heroMount = document.getElementById("hero-mount");
-  const cardMount = document.getElementById("business-card-mount");
-  const galleryMount = document.getElementById("gallery-mount");
-  const mapMount = document.getElementById("map-mount");
-  const modalMount = document.getElementById("modal-mount");
-  const footerMount = document.getElementById("footer-mount");
-
-  if (navbarMount) renderNavbar(navbarMount, appState);
-  if (heroMount) renderHero(heroMount, appState);
-  if (cardMount) renderBusinessCard(cardMount, appState);
-  if (galleryMount) renderLocationGrid(galleryMount, appState);
-  if (mapMount) renderMapExplorer(mapMount, appState);
-  if (modalMount) renderLocationModal(modalMount, appState);
-
-  // Render Footer Content
-  if (footerMount) {
-    footerMount.innerHTML = `
-      <div class="container">
-        <div class="footer-inner">
-
-          <div class="footer-brand">
-            <h3>Madayaw <span style="color:var(--gold)">Davao</span></h3>
-            <p>
-              A curated guide to Davao City's verified tourist spots, restaurants, specialty cafes, and hotels. Built for the QR business card experience.
-            </p>
-          </div>
-
-            <div class="footer-links-group">
-              <a href="#gallery-section">All Destinations</a>
-              <a href="card.html">Print Physical Cards (Driver Pass)</a>
-              <a href="#map-section">Map View</a>
-              <a href="#kadayawan-section">Kadayawan</a>
-            </div>
-            <div class="footer-links-group">
-              <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.35);display:block;margin-bottom:0.5rem;">Davao Hotlines</span>
-              <span>Emergency: 911</span>
-              <span>Tourism: (082) 222-1956</span>
-              <span>Airport: Francisco Bangoy (DVO)</span>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="footer-bottom">
-          Madayaw Davao. 100% Davao City verified destinations.
-        </div>
-      </div>
-    `;
-  }
-
-  // Handle Initial URL Hash Routing (e.g. #card, #spot-id)
-  const handleHashRouting = () => {
-    const hash = window.location.hash.replace("#", "");
-    if (hash === "card" || hash === "business-card-section") {
-      const cardSec = document.getElementById("business-card-section");
-      if (cardSec) cardSec.scrollIntoView({ behavior: "smooth" });
-    } else if (hash.startsWith("spot-")) {
-      const locId = hash.replace("spot-", "");
-      appState.selectLocation(locId);
-    }
-  };
-
-  window.addEventListener("hashchange", handleHashRouting);
-  handleHashRouting();
-
-  console.log("Madayaw Davao application successfully initialized.");
-});
+const credits = [
+  ['Skyline', 'Patrickroque01', 'https://commons.wikimedia.org/wiki/File:Davao_Bajada-Buhangin_skyline_Shrine_Hills_(Davao_City;_04-19-2024).jpg', 'https://creativecommons.org/licenses/by-sa/4.0/', 'CC BY-SA 4.0'],
+  ['Kadayawan', 'GinaD', 'https://commons.wikimedia.org/wiki/File:Indak-indak_sa_Kadalanan_06.JPG', 'https://creativecommons.org/licenses/by-sa/3.0/', 'CC BY-SA 3.0'],
+  ["People's Park", 'Robert Ryan U. Ong', "https://commons.wikimedia.org/wiki/File:People%27s_Park,_Davao_City,_Philippines_(1_May_2010).jpg", 'https://creativecommons.org/licenses/by-sa/3.0/', 'CC BY-SA 3.0'],
+  ['Roxas Night Market', 'RoyKabanlit', 'https://commons.wikimedia.org/wiki/File:Roxas_Ave_Night_Market_001.jpg', 'https://creativecommons.org/licenses/by-sa/4.0/', 'CC BY-SA 4.0'],
+  ['Davao Crocodile Park', 'WorldTravleerAndPhotoTaker', 'https://commons.wikimedia.org/wiki/File:Pangil_at_Davao_Crocodile_Park.jpg', 'https://creativecommons.org/licenses/by-sa/4.0/', 'CC BY-SA 4.0']
+];
+const footer = document.getElementById('footer-mount');
+footer.innerHTML = `<div class="shell footer-top"><div><p class="footer-brand">Madayaw Davao.</p><p>A small guide to a big city. Made for visitors and the people who welcome them.</p></div><div class="footer-credit"><span>Created by</span><strong>Lance C. Lastimosa</strong><a href="card.html">See the visitor card</a></div></div><div class="shell footer-bottom"><p>Independent student project. Check venue hours and access before visiting.</p><details><summary>Photo credits and licenses</summary><p>Images resized and converted to WebP from Wikimedia Commons originals.</p><ul>${credits.map(([label, author, file, license, name]) => `<li>${label}: <a href="${file}" target="_blank" rel="noopener noreferrer">${author}</a>, <a href="${license}" target="_blank" rel="noopener noreferrer">${name}</a></li>`).join('')}</ul></details></div>`;

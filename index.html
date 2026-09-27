@@ -1,53 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Madayaw Davao - Curated Tourism Portal & QR Business Card</title>
-  <meta name="description" content="Discover the best of Davao City. 100% verified tourist spots, restaurants, cafes, and hotels with scannable QR business card and Google Maps navigation." />
-  <meta name="theme-color" content="#0F172A" />
-
-  <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Madayaw Davao - Curated Tourism Portal & QR Business Card" />
-  <meta property="og:description" content="Explore verified Davao City destinations with modern whitespace, high-resolution photography, and direct Google Maps navigation." />
-  <meta property="og:type" content="website" />
-
-  <!-- Preload Essential Assets -->
-  <link rel="preload" href="assets/images/hero-davao.jpg" as="image" />
-
-  <!-- Design System Stylesheets -->
-  <link rel="stylesheet" href="src/styles/base.css" />
-  <link rel="stylesheet" href="src/styles/card.css" />
-  <link rel="stylesheet" href="src/styles/portal.css" />
-  <link rel="stylesheet" href="src/styles/map.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12382f">
+  <meta name="author" content="Lance C. Lastimosa">
+  <meta name="description" content="A friendly Davao City guide for visitors: where to explore, eat, get coffee and stay, with direct Google Maps links. Created by Lance C. Lastimosa.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Madayaw Davao | Where to, Davao?">
+  <meta property="og:description" content="A local shortlist for the questions Davao visitors ask. Explore, eat, get coffee and find a stay.">
+  <meta property="og:image" content="https://davao-tourism.vercel.app/assets/images/hero-davao.webp">
+  <title>Madayaw Davao | A visitor guide by Lance C. Lastimosa</title>
+  <link rel="preload" href="assets/images/hero-davao.webp" as="image">
+  <link rel="stylesheet" href="src/styles/base.css">
+  <link rel="stylesheet" href="src/styles/portal.css">
+  <link rel="stylesheet" href="src/styles/map.css">
 </head>
 <body>
-
-  <!-- Sticky Header & Category Navigation Mount -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   <div id="navbar-mount"></div>
-
-  <!-- Main Application Content -->
-  <main id="main-content" role="main">
-    
-    <!-- Hero Section Mount -->
+  <main id="main-content">
     <div id="hero-mount"></div>
-
-    <!-- Curated Location Gallery Mount -->
     <div id="gallery-mount"></div>
-
-    <!-- Interactive Geographic Map Mount -->
+    <div id="story-mount"></div>
     <div id="map-mount"></div>
-
   </main>
-
-  <!-- Global Footer Mount -->
-  <footer id="footer-mount" class="app-footer" role="contentinfo"></footer>
-
-  <!-- Detail Modal Mount -->
+  <footer id="footer-mount" class="site-footer"></footer>
   <div id="modal-mount"></div>
-
-  <!-- Application Bootstrap Script -->
   <script type="module" src="src/app.js"></script>
-
 </body>
 </html>

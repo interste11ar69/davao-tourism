@@ -1,110 +1,12 @@
-/**
- * Navigation Bar Component.
- * Underline-tab category navigation. Solid white navbar, no glassmorphism.
- * Scroll-aware shadow via IntersectionObserver on hero.
- */
-
-import { categories } from "../data/locations.js";
+import { categories } from '../data/locations.js';
 
 export function renderNavbar(container, appState) {
   if (!container) return;
-
-  function update() {
-    const state = appState.getState();
-
-    const tabsHtml = categories
-      .map((cat) => {
-        const isActive = state.activeCategory === cat.id;
-        return `
-          <button
-            class="filter-tab ${isActive ? "is-active" : ""}"
-            data-category="${cat.id}"
-            type="button"
-            aria-pressed="${isActive}"
-            aria-label="Show ${cat.label}"
-          >
-            ${cat.label}
-          </button>
-        `;
-      })
-      .join("");
-
-    container.innerHTML = `
-      <header class="app-header" id="app-header" role="banner">
-        <div class="container">
-          <div class="navbar-inner">
-
-            <a href="#hero-section" class="brand-logo" id="brand-logo-link" aria-label="Madayaw Davao home">
-              <span class="brand-word">Madayaw</span>
-              <span class="brand-word brand-word-accent">Davao</span>
-            </a>
-
-            <nav class="nav-filters" role="navigation" aria-label="Destination categories">
-              ${tabsHtml}
-            </nav>
-
-            <div class="navbar-actions">
-              <a href="#map-section" class="btn btn-outline" id="nav-btn-map" aria-label="View interactive map">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                  <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
-                  <line x1="8" y1="2" x2="8" y2="18"></line>
-                  <line x1="16" y1="6" x2="16" y2="22"></line>
-                </svg>
-                Map View
-              </a>
-            </div>
-
-          </div>
-        </div>
-      </header>
-    `;
-
-    const header = container.querySelector("#app-header");
-
-    // Add scroll-aware shadow without glassmorphism
-    const heroEl = document.getElementById("hero-section");
-    if (heroEl && header) {
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          header.classList.toggle("is-scrolled", !entry.isIntersecting);
-        },
-        { rootMargin: "-66px 0px 0px 0px" }
-      );
-      obs.observe(heroEl);
-    }
-
-    // Category tab events
-    container.querySelectorAll(".filter-tab").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const cat = btn.getAttribute("data-category");
-        appState.setCategory(cat);
-        const gallery = document.getElementById("gallery-section");
-        if (gallery) gallery.scrollIntoView({ behavior: "smooth" });
-      });
-    });
-
-    // Brand logo
-    const logo = container.querySelector("#brand-logo-link");
-    if (logo) {
-      logo.addEventListener("click", (e) => {
-        e.preventDefault();
-        appState.setCategory("all");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
-    }
-
-
-    // Map
-    const mapBtn = container.querySelector("#nav-btn-map");
-    if (mapBtn) {
-      mapBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        const mapSection = document.getElementById("map-section");
-        if (mapSection) mapSection.scrollIntoView({ behavior: "smooth" });
-      });
-    }
-  }
-
-  update();
-  appState.subscribe(() => update());
+  container.innerHTML = `<header class="site-header"><div class="shell header-inner">
+    <a class="brand" href="#top" aria-label="Madayaw Davao, back to top"><span class="brand-mark">M</span><span>Madayaw <strong>Davao</strong></span></a>
+    <nav class="header-nav" aria-label="Main navigation"><a href="#questions">Find a place</a><a href="#places">All places</a><a href="#kadayawan">Kadayawan</a><a href="card.html">The card</a></nav>
+  </div></header>`;
+  const style = document.createElement('style');
+  style.textContent = `.site-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}.header-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:inline-flex;align-items:center;gap:9px;font-weight:800;text-decoration:none;white-space:nowrap;color:var(--forest)}.brand strong{color:var(--leaf)}.brand-mark{display:grid;place-items:center;width:36px;height:36px;background:var(--forest);color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;line-height:1}.header-nav{display:flex;align-items:center;gap:clamp(10px,2vw,30px);overflow-x:auto}.header-nav a{font-size:.84rem;font-weight:700;white-space:nowrap;text-decoration:none;padding:14px 0}.header-nav a:hover{text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:3px;text-underline-offset:7px}@media(max-width:650px){.header-inner{display:block;padding-block:9px}.brand{font-size:.92rem}.brand-mark{width:30px;height:30px;font-size:1.45rem}.header-nav{margin-top:5px;gap:22px}.header-nav a{font-size:.76rem;padding:4px 0 6px}}`;
+  container.append(style);
 }

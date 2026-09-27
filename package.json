@@ -2,7 +2,7 @@
   "name": "davao-tourism",
   "version": "1.0.0",
   "private": true,
-  "description": "Davao City QR Business Card & Curated Tourism Web Portal",
+  "description": "Phone-first Davao City visitor guide and static print card",
   "type": "module",
   "scripts": {
     "dev": "python3 -m http.server 3000",
@@ -19,6 +19,6 @@
     "philippines",
     "travel"
   ],
-  "author": "Davao Tourism Board Collective",
-  "license": "MIT"
+  "author": "Lance C. Lastimosa",
+  "license": "UNLICENSED"
 }
