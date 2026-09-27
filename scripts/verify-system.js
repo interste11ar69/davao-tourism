@@ -22,6 +22,7 @@ for (const loc of locations) {
   required(Boolean(loc.name && loc.district && loc.address && loc.description && loc.mapsQuery), `Fields: ${loc.id}`);
   required(['downtown', 'south', 'north', 'uplands'].includes(loc.area) && Array.isArray(loc.intents) && loc.intents.length > 0, `Passenger guidance: ${loc.id}`);
   required(sourceValid(loc), `Sources: ${loc.id}`);
+  required(Boolean(loc.image), `Card image missing: ${loc.id}`);
   if (loc.image) {
     required(exists(loc.image.path) && fs.statSync(path.join(root, loc.image.path)).size < 500_000, `Image missing or oversized: ${loc.id}`);
     required(Boolean(loc.image.alt && loc.image.creditId && (loc.image.depictsVenue || loc.image.caption)), `Image caption/credit: ${loc.id}`);
@@ -43,13 +44,16 @@ for (const image of fs.readdirSync(path.join(root, 'assets/images'))) {
   required(fs.statSync(full).isFile() && fs.statSync(full).size < 500_000, `Oversized/unexpected image: ${image}`);
 }
 required(exists('docs/SOURCES.md'), 'Missing attribution register');
-required(exists('index.html') && exists('card.html'), 'Missing pages');
+required(exists('index.html') && !exists('card.html') && !exists('assets/card') && !exists('src/styles/card.css'), 'Print files remain in public tree');
+required(fs.readFileSync(path.join(root, '.gitignore'), 'utf8').includes('owner-card/'), 'Owner card is not Git ignored');
+required(fs.readFileSync(path.join(root, '.vercelignore'), 'utf8').includes('owner-card/'), 'Owner card is not Vercel ignored');
 required(JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8')), 'Vercel config invalid');
 if (process.argv.includes('--final')) {
   for (const relative of ['src/utils/qr.js', 'src/components/business-card.js']) required(!exists(relative), `Runtime QR file remains: ${relative}`);
-  for (const relative of ['index.html', 'card.html', 'src/app.js', 'src/state/app-state.js']) {
+  for (const relative of ['index.html', 'src/app.js', 'src/components/navbar.js', 'src/state/app-state.js']) {
     const content = fs.readFileSync(path.join(root, relative), 'utf8');
     required(!/generateQRCode|targetVercelUrl|renderBusinessCard|Customize encoded link/.test(content), `Runtime QR reference: ${relative}`);
+    required(!/card\.html|assets\/card|owner-card/.test(content), `Public card reference: ${relative}`);
   }
 }
 if (errors.length) {

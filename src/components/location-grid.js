@@ -6,9 +6,7 @@ const areaLabel = { downtown:'Downtown stop', south:'South Davao', north:'North 
 const intentLabel = { 'first-time':'First time in Davao', family:'With the family', tonight:'Going out tonight', food:'Looking for food', stay:'Need a place to stay' };
 
 function card(place, index) {
-  const image = place.image
-    ? `<div class="place-visual"><img src="${escapeHtml(place.image.path)}" alt="${escapeHtml(place.image.alt)}" loading="lazy">${place.image.caption ? `<span class="place-caption">${escapeHtml(place.image.caption)}</span>` : ''}</div>`
-    : `<div class="place-visual no-image"><span>${escapeHtml(place.name)}</span></div>`;
+  const image = `<div class="place-visual"><img src="${escapeHtml(place.image.path)}" alt="${escapeHtml(place.image.alt)}" loading="lazy">${place.image.caption ? `<span class="place-caption">${escapeHtml(place.image.caption)}</span>` : ''}</div>`;
   return `<article class="place-card ${index === 0 ? 'featured' : ''}" data-category="${place.category}">
     ${image}<div class="place-content"><span class="place-meta">${escapeHtml(place.district)} / ${areaLabel[place.area]}</span>
     <h3>${escapeHtml(place.name)}</h3><p>${escapeHtml(place.description)}</p>

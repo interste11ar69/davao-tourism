@@ -18,7 +18,7 @@ Delivery boundary: the implementation is committed locally. The project owner pu
 - `src/components/modal-detail.js`: accessible details and Maps exit.
 - `src/components/map-explorer.js`: accurately labeled geographic view or place list.
 - `src/app.js`: mounting and footer; no QR or card state.
-- `card.html`, `src/styles/card.css`, `assets/card/**`: print artwork and instructions without runtime QR generation.
+- `owner-card/**` (local and ignored): editable SVG card faces, 300 ppi PNG exports, QR source, and print notes. No card files are sent to Vercel or added to new Git commits.
 - `scripts/verify-system.js`: schema, city, media, source, and architecture checks.
 - `scripts/fetch-images.py`: documented acquisition and optimization.
 
@@ -32,21 +32,22 @@ Delivery boundary: the implementation is committed locally. The project owner pu
 
 `buildGoogleMapsUrl(location): string` and `buildGoogleDirectionsUrl(location): string` use documented Google Maps URL forms, with a verified Place ID when available. State changes preserve search focus and scroll position.
 
-## Complete tracked file layout
+## Complete workspace file layout
 
 ```text
 README.md                       Run, editorial maintenance, and card instructions
 package.json                    Local commands and verification
 vercel.json                     Static routing and headers
 index.html                      Visitor guide shell and metadata
-card.html                       Card preview, static QR, creator credit, and print instructions
+.gitignore                      Excludes local owner card assets
+.vercelignore                   Excludes local owner card assets from deployment
 docs/SPEC.md                    Outcomes and acceptance criteria
 docs/ARCHITECTURE.md            Modules, contracts, and risks
 docs/TASKS.md                   Ordered implementation matrix
 docs/AUDIT.md                   Evidence-based final QA report
 docs/SOURCES.md                 Place/story sources and image attributions
 assets/images/**                Optimized, licensed guide images
-assets/card/**                  Print artwork and static QR for confirmed production URL
+owner-card/**                   Local-only print artwork and QR; intentionally untracked
 scripts/fetch-images.py         Reproducible media workflow
 scripts/verify-system.js        Automated checks
 src/app.js                      Bootstrap and footer
@@ -62,10 +63,9 @@ src/components/modal-detail.js  Accessible detail
 src/styles/base.css             Tokens, type, focus, and reset
 src/styles/portal.css           Hero, stories, results, and detail
 src/styles/map.css              Geographic/list styles
-src/styles/card.css             Print card styles
 ```
 
-`src/components/business-card.js` and `src/utils/qr.js` are removed. Unsuitable media are removed, not retained to satisfy a count. The footer, card, README, and metadata credit Lance C. Lastimosa.
+`card.html`, `src/styles/card.css`, `assets/card/**`, `src/components/business-card.js`, and `src/utils/qr.js` are removed from the published tree. Unsuitable media are removed, not retained to satisfy a count. The footer, private card, README, and metadata credit Lance C. Lastimosa.
 
 ## Technology choices
 
@@ -81,4 +81,4 @@ Venue facts change: keep source and checked date, omit unsourced live claims. Im
 
 ## Coverage
 
-Journey 1 maps to card artwork, `index.html`, hero, and navbar. Journey 2 maps to place data, grid, detail, Maps, and state. Journey 3 maps to stories, hero, and sources. Journey 4 maps to `card.html`, card assets/styles, README, and proof verification. Journey 5 maps to footer, card, README, and package metadata. Journey 6 maps to intent-tagged places, hero shortcuts, grid filtering, and Maps. Every goal has a component and task.
+Journey 1 maps to private card artwork, `index.html`, hero, and navbar. Journey 2 maps to place data, grid, detail, Maps, and state. Journey 3 maps to stories, hero, and sources. Journey 4 maps to `owner-card/**`, README, and proof verification. Journey 5 maps to footer, private card, README, and package metadata. Journey 6 maps to intent-tagged places, hero shortcuts, grid filtering, and Maps. Every goal has a component and task.

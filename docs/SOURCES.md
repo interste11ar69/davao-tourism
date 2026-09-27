@@ -35,5 +35,14 @@ Images are resized and converted for web delivery. Credit is displayed in the si
 | People's Park | Robert Ryan U. Ong | https://commons.wikimedia.org/wiki/File:People%27s_Park,_Davao_City,_Philippines_(1_May_2010).jpg | CC BY-SA 3.0 | Named park |
 | Roxas Night Market | RoyKabanlit | https://commons.wikimedia.org/wiki/File:Roxas_Ave_Night_Market_001.jpg | CC BY-SA 4.0 | Named market |
 | Davao Crocodile Park | WorldTravleerAndPhotoTaker | https://commons.wikimedia.org/wiki/File:Pangil_at_Davao_Crocodile_Park.jpg | CC BY-SA 4.0 | Crocodile at named park |
+| Philippine Eagle Center | RoyKabanlit | https://commons.wikimedia.org/wiki/File:Philippine_Eagle_at_the_Philippine_Eagle_Center_003.jpg | CC BY-SA 4.0 | Eagle at named center |
+| Eden Nature Park | Michael E. Peligro | https://commons.wikimedia.org/wiki/File:Eden_Nature_Park_panorama.jpg | CC BY-SA 4.0 | Entrance of named park |
+| Jack's Ridge | Saqib Qayyum | https://commons.wikimedia.org/wiki/File:Davao.JPG | CC BY-SA 3.0 | View from named ridge |
+| Marina Tuna context | PAULIX04 | https://commons.wikimedia.org/wiki/File:Fresh_Seafood_at_davao_city.jpg | CC BY-SA 4.0 | Seafood in Davao City; not Marina Tuna |
+| Bistro Rosario context | Patrickroque01 | https://commons.wikimedia.org/wiki/File:Davao_Bajada_top_view_F._Torres_(Davao_City;_04-21-2024).jpg | CC BY-SA 4.0 | Bajada street view; not Bistro Rosario |
+| Purge Coffee context | Patrickroque01 | https://commons.wikimedia.org/wiki/File:Davao_MacArthur_Highway,_Matina_with_Mount_Apo_view_(Davao_City;_04-21-2024).jpg | CC BY-SA 4.0 | Matina and Mount Apo; not Purge Coffee |
+| Green Coffee context | Patrickroque01 | https://commons.wikimedia.org/wiki/File:National_Road,_Davao_JP_Laurel_Avenue_Bajada_(Davao_City;_04-22-2024).jpg | CC BY-SA 4.0 | JP Laurel Avenue, Bajada; not Green Coffee |
+| Apo View context | Patrickroque01 | https://commons.wikimedia.org/wiki/File:Davao_Poblacion_CM_Recto_skyline_Mesatierra_(Davao_City;_04-22-2024).jpg | CC BY-SA 4.0 | Poblacion skyline; not Apo View Hotel |
+| Dusit context | Kenneth Rangas | https://commons.wikimedia.org/wiki/File:Shrine_Hills_view_from_SM_Lanang_-_panoramio.jpg | CC BY 3.0 | View from SM Lanang; not Dusit Thani Residence |
 
-All other existing images are excluded from the publishable set pending venue-match and license review. No stock photo is presented as a restaurant, cafe, or hotel interior.
+Context images are captioned on the cards and never presented as business interiors. Photo derivatives were resized and converted to WebP; the license and creator credit remain attached to each source in this register and the public photo credits.

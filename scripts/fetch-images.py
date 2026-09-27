@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Download and resize the five credited Wikimedia Commons images used by the guide.
+"""Download and resize credited Wikimedia Commons images used by the guide.
 
 Each source and license is recorded in docs/SOURCES.md. Requires Pillow.
 """
 from io import BytesIO
 from pathlib import Path
 from urllib.request import Request, urlopen
+from urllib.parse import quote
 from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,10 +18,23 @@ IMAGES = {
     'roxas-night-market.webp': ('https://upload.wikimedia.org/wikipedia/commons/a/a6/Roxas_Ave_Night_Market_001.jpg', 1000),
     'crocodile-park.webp': ('https://upload.wikimedia.org/wikipedia/commons/1/1e/Pangil_at_Davao_Crocodile_Park.jpg', 1000),
 }
+COMMONS_FILES = {
+    'philippine-eagle-center.webp': 'Philippine Eagle at the Philippine Eagle Center 003.jpg',
+    'eden-nature-park.webp': 'Eden Nature Park panorama.jpg',
+    'jacks-ridge.webp': 'Davao.JPG',
+    'marina-tuna-context.webp': 'Fresh Seafood at davao city.jpg',
+    'bistro-rosario-context.webp': 'Davao Bajada top view F. Torres (Davao City; 04-21-2024).jpg',
+    'purge-coffee-context.webp': 'Davao MacArthur Highway, Matina with Mount Apo view (Davao City; 04-21-2024).jpg',
+    'green-coffee-context.webp': 'National Road, Davao JP Laurel Avenue Bajada (Davao City; 04-22-2024).jpg',
+    'apo-view-context.webp': 'Davao Poblacion CM Recto skyline Mesatierra (Davao City; 04-22-2024).jpg',
+    'dusit-context.webp': 'Shrine Hills view from SM Lanang - panoramio.jpg',
+}
 
 def main():
     DEST.mkdir(parents=True, exist_ok=True)
-    for filename, (url, max_width) in IMAGES.items():
+    targets = dict(IMAGES)
+    targets.update({filename: (f'https://commons.wikimedia.org/wiki/Special:Redirect/file/{quote(title.replace(" ", "_"))}?width=1200', 1000) for filename, title in COMMONS_FILES.items()})
+    for filename, (url, max_width) in targets.items():
         request = Request(url, headers={'User-Agent': 'MadayawDavaoStudentGuide/1.0 (image attribution in docs/SOURCES.md)'})
         with urlopen(request, timeout=30) as response:
             raw = response.read()

@@ -26,6 +26,9 @@ A person receiving the physical card needs a fast, trustworthy Davao City guide 
 - Display clear credit to Lance C. Lastimosa in the site footer and on the card; align README and metadata.
 - Optimize images, interaction, accessibility, and phone layouts; update docs and verification.
 - Commit the completed changes locally after QA. The project owner will push from VS Code and check the resulting Vercel production page.
+- Give every published place card a real, licensed photograph. Use an image of the named place where verifiable; otherwise use a clearly captioned Davao contextual scene. Do not repeat one context photo across unrelated businesses as if it depicts them.
+- Supply 3.5 by 2 inch, 300 ppi PNG files for both physical card faces, alongside editable SVG masters.
+- Keep the print card and QR files in a local owner folder excluded from Git and Vercel. Remove public site links and the public card page. Visitors only need the guide that the card opens.
 
 ## Anti-goals
 
@@ -48,6 +51,9 @@ Booking, payments, accounts, live hours, live event schedules, an embedded map S
 - Initial mobile transfer is measured and targeted below 1 MB; no single guide image exceeds 500 KB without documented reason.
 - Category selection, search focus, details, Maps actions, keyboard use, and phone layouts pass browser checks.
 - The physical card is proof printed and scanned on two phones before bulk printing. The confirmed URL is used for the final static QR asset.
+- Every published location renders a loadable photograph, with a visible contextual caption whenever the photograph does not depict the named place.
+- Both card-face PNGs exist at 1050 x 600 pixels and their rendered QR decodes to the production root.
+- No card preview, download, or QR file is served from the visitor site after the owner's next deployment; the local owner files are ignored by Git and Vercel. Existing Git history may still contain earlier public artwork and cannot be made private by these changes alone.
 - Full local verification passes and a Git commit exists. GitHub push and Vercel publication are an owner handoff.
 
 ## Source starting points

@@ -5,8 +5,8 @@
   "description": "Phone-first Davao City visitor guide and static print card",
   "type": "module",
   "scripts": {
-    "dev": "python3 -m http.server 3000",
-    "serve": "python3 -m http.server 3000",
+    "dev": "python3 -m http.server 3000 --bind 127.0.0.1",
+    "serve": "python3 -m http.server 3000 --bind 127.0.0.1",
     "verify": "node scripts/verify-system.js",
     "fetch-images": "python3 scripts/fetch-images.py"
   },

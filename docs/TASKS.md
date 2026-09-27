@@ -25,6 +25,17 @@ T03A was added after the taxi-driver use case was clarified. It is completed bef
 T07 includes minimal app bootstrap wiring so its browser behavior can be verified before T08. T09 remains the final document/footer/routing pass.
 T10's physical two-phone proof is a print-production step the project owner must perform with the chosen stock and printer. Engineering verifies print geometry and software decodability; the final audit must say plainly that physical stock was not tested here.
 
+## 2026-09-27 correction: imagery and private print files
+
+The owner's correction authorizes this extension of the approved work. Execute in order and commit locally; the owner pushes from VS Code.
+
+| ID | Depends on | Files and work | Binary DoD | Verification |
+|---|---|---|---|---|
+| T13 | T12 | Research licensed, accurately identified place/context photos; update `docs/SOURCES.md`, `scripts/fetch-images.py`, `assets/images/**` | Each of 13 places has a documented photo choice and license; new images are under 500 KB | Source/license review; `python3 scripts/fetch-images.py`; file size check |
+| T14 | T13 | Map photos in `src/data/locations.js`; update card rendering and `src/app.js` credits; strengthen `scripts/verify-system.js` | All 13 cards show valid images; context is visibly labeled; credits cover every displayed photo | `npm run verify -- --final`; browser image load and phone check |
+| T15 | T14 | Move SVG/QR to ignored `owner-card/**`, export PNG faces, remove `card.html`, `src/styles/card.css`, `assets/card/**`; update `.gitignore`, `.vercelignore`, navbar/footer, README | 1050 x 600 PNG fronts/backs and scannable QR exist locally; published tree has no card link or asset | PNG dimensions and QR decode; `git check-ignore`; local site link audit |
+| T16 | T15 | Update `docs/AUDIT.md`; final QA and local commit | Final verifier and browser QA pass; owner receives exact private file location and publication caveat | `npm run verify -- --final`; `git status --short`; `git log -1 --oneline` |
+
 ## Execution checkpoints
 
 - T01 complete: docs/SOURCES.md created; ten candidate venues have city/operator sources and five retained images have creator, source, and license. Verification: `test -f docs/SOURCES.md` passed. Next: T02.
@@ -40,3 +51,7 @@ T10's physical two-phone proof is a print-production step the project owner must
 - T10 complete for digital artwork: two 3.5 x 2 inch SVG faces, embedded static QR, readable address, and Lance C. Lastimosa credit. Verification: browser print rectangles 336 x 192 CSS px, phone layout passed, zxing-cpp decoded rendered card QR to the confirmed URL. Physical two-phone proof remains a pre-bulk-print owner step. Next: T11.
 - T11 complete: README, package author/license metadata, and evidence-based audit updated. Verification: local server procedure used throughout; `npm run verify -- --final` passed. Next: T12.
 - T12 complete for the approved local scope: QA passed and changes are committed locally. GitHub push and live Vercel check were reassigned to the project owner at the owner's request.
+- T13 complete: nine additional Commons photos were source and license checked, downloaded, resized, and registered. The 14-image folder contains a unique photo for each place plus the hero. Verification: fetch script reproduced every image; all are below 500 KB. Next: T14.
+- T14 complete: all 13 location records now require images, contextual scenes have visible captions, and the public credits include every added creator. Verification: `npm run verify -- --final` passed. Browser loading is checked during T16. Next: T15.
+- T15 complete: moved print SVGs and QR into local `owner-card/`, rendered 1050 x 600 PNG faces at 300 ppi, removed public card page/assets/navigation, and added Git/Vercel ignore rules. Verification: PNG geometry and zxing QR decode passed; `git check-ignore` matched owner files; visitor DOM has no card links. Next: T16.
+- T16 complete: final verifier, four viewport browser image checks, local owner preview, QR decoding, ignore checks, and diff validation passed. Correction is ready for a local Git commit and owner publication from VS Code.

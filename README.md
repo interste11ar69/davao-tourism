@@ -4,7 +4,7 @@ A phone-first Davao City visitor guide created by Lance C. Lastimosa. It is desi
 
 ## Run locally
 
-Requirements: Python 3 for the local static server, Node.js for checks.
+Requirements: Python 3 for the local static server, Node.js for checks. The server listens only on this computer.
 
 ```sh
 npm run dev
@@ -27,20 +27,20 @@ The place data is in `src/data/locations.js`; the Kadayawan introduction is in `
 
 ## Physical card
 
-`card.html` previews both sides. Download print-size SVG faces from that page. The static QR in `assets/card/card-back.svg` and `assets/card/visitor-guide-qr.svg` encodes `https://davao-tourism.vercel.app/`. The site contains no QR generator or URL editor.
+The card is an owner print asset in the local, Git-ignored `owner-card/` folder. Open `owner-card/preview.html` on this computer. Use `card-front.png` and `card-back.png` there for printing; each is 1050 x 600 pixels at 300 ppi, or 3.5 by 2 inches. The SVG files are editable masters. The static QR encodes `https://davao-tourism.vercel.app/`. The public guide contains no card downloads or QR generator.
 
 Print at 3.5 by 2 inches and 100% scale. Ask the print shop about bleed, trim, and safe area. Make one physical proof on the chosen stock and scan it with two different phones before ordering a batch. Keep the QR's white margin clear and use the printed URL as a fallback.
 
-If the production address ever changes, create a new static QR and replace both the QR-only asset and the embedded QR in the back artwork before printing new cards. Already printed cards will keep pointing at the old address.
+If the production address ever changes, create a new static QR and replace both the QR-only asset and the embedded QR in the back artwork before printing new cards. Already printed cards will keep pointing at the old address. The local `owner-card/render-png.py` recreates the PNG faces from SVG masters using Chrome and ImageMagick.
 
 ## Images and rights
 
-Five resized Commons images are used, with creator and license attribution in the site footer and `docs/SOURCES.md`. They retain their respective Creative Commons licenses. The project's package metadata does not grant rights to relicense those photos. Business listings without a suitable licensed venue photo use typographic artwork rather than an unrelated image.
+Fourteen resized Commons images are used, with creator and license attribution in the site footer and `docs/SOURCES.md`. They retain their respective Creative Commons licenses. The project's package metadata does not grant rights to relicense those photos. Every place card has a photo. Where a licensed photograph of the named business was unavailable, the card uses a distinct Davao context photo and labels it as such.
 
-To refresh those five source images, install Pillow and run `python3 scripts/fetch-images.py`. Review license and subject before adding any new photograph.
+To refresh source images, install Pillow and run `python3 scripts/fetch-images.py`. Review license and subject before adding any new photograph.
 
 ## Deployment
 
 The configured GitHub origin is connected to the existing Vercel project. Production address: `https://davao-tourism.vercel.app/`. Use the production domain for printed QR codes; individual preview deployment addresses are not card destinations. Confirm the public page after each production update.
 
-The implementation is committed locally. To publish later from VS Code, push the local `main` branch to `origin`. Then wait for the Vercel production deployment and confirm that the new visitor guide, Lance C. Lastimosa credit, and card page are visible on the public site. Do not order physical cards until that live check and a two-phone print proof pass.
+To publish later from VS Code, push the local `main` branch to `origin`. Then wait for the Vercel production deployment and confirm that the visitor guide and Lance C. Lastimosa credit are visible. Confirm that `/card` and the old `/assets/card/` paths return 404. The card files are ignored by Git and Vercel, so send them to the owner privately if they are needed on another computer. Older card SVGs remain in Git history if the repository is public. Do not order physical cards until the live check and a two-phone print proof pass.
