@@ -1,6 +1,6 @@
 # Delivery audit
 
-Status: Final verification in progress. Updated 2026-09-27.
+Status: Local implementation verified; GitHub publication blocked by missing authentication. Updated 2026-09-27.
 
 ## Spec reconciliation
 
@@ -19,9 +19,13 @@ Status: Final verification in progress. Updated 2026-09-27.
 - Phone flow passed question shortcut, search focus while typing, detail opening, Maps links, and Escape close.
 - Printed card CSS computes to 336 by 192 CSS px, equivalent to 3.5 by 2 inches at 96 CSS px per inch.
 - A rendered capture of the card-back QR decoded to the confirmed production URL with zxing-cpp.
+- Initial phone load at 390 px transferred about 333 KB of local resources in the browser audit, including about 293 KB of images.
+- Interactive category, intent, search, dialog, and Maps-link flows passed at 320, 390, 768, and 1440 px. Dialog close restores focus to its invoking button.
+- Final-mode `npm run verify -- --final`, SVG XML parse, and `git diff --check` passed.
 
-## Pending final audit
+## Delivery state
 
-- Full final-mode automated verification and placeholder audit.
-- Git commit, GitHub push, and Vercel production check.
+- Local implementation commit: `f1a585d` (`Build Davao visitor guide and static QR card`).
+- `git push origin main` failed because GitHub rejected the workspace's credentials. `gh auth status` reports no login, and there is no configured SSH key. The commit is local only.
+- The Vercel production page still serves the previous title as of this check; the new guide is not live yet.
 - Physical proof print and scans on two phones remain an owner action before bulk printing; software decoding cannot establish how a chosen stock, finish, and printer behave.
