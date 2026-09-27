@@ -6,6 +6,8 @@ Status: Approved for execution on 2026-09-27.
 
 The physical card's QR opens the stable public production root. Vercel serves `index.html`; `src/app.js` mounts static data and components. Category, search, and selected-place state live in memory. Place actions open Google Maps. There is no backend, account, analytics, or persistent visitor data. Card production is separate: encode https://davao-tourism.vercel.app/ as a static QR during asset preparation, place it in print artwork, proof print, and scan.
 
+Delivery boundary: the implementation is committed locally. The project owner pushes from VS Code, after which Vercel's production page should be checked. No automated publication is part of this delivery.
+
 - `src/data/locations.js`: curated city-only places and categories.
 - `src/data/stories.js`: sourced Kadayawan and local context.
 - `src/state/app-state.js`: category, search, selected place, and mobile navigation state.

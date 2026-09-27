@@ -16,9 +16,9 @@ Status: Approved for execution on 2026-09-27. Execute one task at a time after t
 | T09 | T05,T06,T07,T08 | Rewire `index.html`, `src/app.js`, `vercel.json` | No site QR UI, working links, accurate metadata/routing, visible Lance C. Lastimosa footer credit | Local browser smoke check; `npm run verify` |
 | T10 | T06,T09 | Redesign `card.html`, `src/styles/card.css`, `assets/card/**` | Distinct front/back art, static QR for confirmed URL, URL fallback and creator credit, no runtime QR generator | Print CSS at actual size; independent QR decoder on rendered card; physical two-phone proof required before bulk printing |
 | T11 | T01-T10 | Update `README.md`, `docs/AUDIT.md`, `package.json` as needed | Instructions, audit, and author metadata credit Lance C. Lastimosa and reflect measured implementation | Follow README locally; `npm run verify` |
-| T12 | T11 | Full QA, Git commit, and GitHub push | Journeys pass, no unsupported claims/stubs, tests and browser/print proof recorded, commit pushed to origin | `npm run verify`, browser/print checklist, `git status --short`, `git log -1 --oneline`, `git ls-remote origin HEAD` |
+| T12 | T11 | Full local QA, Git commit, and owner handoff | Journeys pass, no unsupported claims/stubs, tests and browser/print checks recorded, local commit exists, push instructions documented | `npm run verify -- --final`, browser/print checklist, `git status --short`, `git log -1 --oneline` |
 
-The confirmed production URL is https://davao-tourism.vercel.app/. GitHub push is included. Verify the resulting Vercel production page after push.
+The confirmed production URL is https://davao-tourism.vercel.app/. The project owner will push from VS Code and verify the resulting Vercel production page.
 
 The T04 final-mode QR check runs after T09 because T05/T09 remove the old UI imports. This dependency correction was recorded before implementing T04.
 T03A was added after the taxi-driver use case was clarified. It is completed before T04 is closed.
@@ -39,4 +39,4 @@ T10's physical two-phone proof is a print-production step the project owner must
 - T09 complete: final visitor document, metadata, Lance C. Lastimosa footer credit, photo credits, story ordering, and Vercel static config. Verification: Playwright at 320/390/768/1440 px found no page errors or overflow; `npm run verify` passed. Next: T10.
 - T10 complete for digital artwork: two 3.5 x 2 inch SVG faces, embedded static QR, readable address, and Lance C. Lastimosa credit. Verification: browser print rectangles 336 x 192 CSS px, phone layout passed, zxing-cpp decoded rendered card QR to the confirmed URL. Physical two-phone proof remains a pre-bulk-print owner step. Next: T11.
 - T11 complete: README, package author/license metadata, and evidence-based audit updated. Verification: local server procedure used throughout; `npm run verify -- --final` passed. Next: T12.
-- T12 in progress: local QA and commit `f1a585d` passed. GitHub push returned authentication failure; production remains on the old page. Resume push and live check after GitHub login.
+- T12 complete for the approved local scope: QA passed and changes are committed locally. GitHub push and live Vercel check were reassigned to the project owner at the owner's request.

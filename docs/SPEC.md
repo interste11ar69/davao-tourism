@@ -25,7 +25,7 @@ A person receiving the physical card needs a fast, trustworthy Davao City guide 
 - Provide front/back card artwork with a static QR for https://davao-tourism.vercel.app/ plus a readable URL fallback. QR creation occurs during asset preparation, never in the shipped website.
 - Display clear credit to Lance C. Lastimosa in the site footer and on the card; align README and metadata.
 - Optimize images, interaction, accessibility, and phone layouts; update docs and verification.
-- Commit the completed changes and push to the configured GitHub origin after QA; check the resulting Vercel production page.
+- Commit the completed changes locally after QA. The project owner will push from VS Code and check the resulting Vercel production page.
 
 ## Anti-goals
 
@@ -48,7 +48,7 @@ Booking, payments, accounts, live hours, live event schedules, an embedded map S
 - Initial mobile transfer is measured and targeted below 1 MB; no single guide image exceeds 500 KB without documented reason.
 - Category selection, search focus, details, Maps actions, keyboard use, and phone layouts pass browser checks.
 - The physical card is proof printed and scanned on two phones before bulk printing. The confirmed URL is used for the final static QR asset.
-- Full verification passes and a Git commit exists.
+- Full local verification passes and a Git commit exists. GitHub push and Vercel publication are an owner handoff.
 
 ## Source starting points
 

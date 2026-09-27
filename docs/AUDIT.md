@@ -1,6 +1,6 @@
 # Delivery audit
 
-Status: Local implementation verified; GitHub publication blocked by missing authentication. Updated 2026-09-27.
+Status: Local implementation verified and committed. GitHub push is an owner handoff. Updated 2026-09-27.
 
 ## Spec reconciliation
 
@@ -26,6 +26,6 @@ Status: Local implementation verified; GitHub publication blocked by missing aut
 ## Delivery state
 
 - Local implementation commit: `f1a585d` (`Build Davao visitor guide and static QR card`).
-- `git push origin main` failed because GitHub rejected the workspace's credentials. `gh auth status` reports no login, and there is no configured SSH key. The commit is local only.
-- The Vercel production page still serves the previous title as of this check; the new guide is not live yet.
+- GitHub push was stopped at the owner's request after a failed attempt due to missing workspace authentication. The project owner will push from VS Code.
+- The Vercel production page still served the previous title at the last check. The new guide will not be live until the local commits are pushed and Vercel finishes deployment.
 - Physical proof print and scans on two phones remain an owner action before bulk printing; software decoding cannot establish how a chosen stock, finish, and printer behave.

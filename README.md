@@ -42,3 +42,5 @@ To refresh those five source images, install Pillow and run `python3 scripts/fet
 ## Deployment
 
 The configured GitHub origin is connected to the existing Vercel project. Production address: `https://davao-tourism.vercel.app/`. Use the production domain for printed QR codes; individual preview deployment addresses are not card destinations. Confirm the public page after each production update.
+
+The implementation is committed locally. To publish later from VS Code, push the local `main` branch to `origin`. Then wait for the Vercel production deployment and confirm that the new visitor guide, Lance C. Lastimosa credit, and card page are visible on the public site. Do not order physical cards until that live check and a two-phone print proof pass.
