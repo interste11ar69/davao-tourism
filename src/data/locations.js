@@ -39,7 +39,7 @@ export const locations = [
     address: 'Magsaysay Park, Davao City', city: 'Davao City',
     mapsQuery: 'Kadayawan Village, Magsaysay Park, Davao City', status: 'published',
     description: "Learn about the city's 11 ethnolinguistic communities through the village at Magsaysay Park. Confirm access before visiting.",
-    bestFor: 'Culture and local history', image: { path: 'assets/images/kadayawan.webp', alt: 'Kadayawan street dancers in Davao City', depictsVenue: false, creditId: 'kadayawan', caption: 'Kadayawan festival scene; the photo does not show the Village.' },
+    bestFor: 'Culture and local history', image: { path: 'assets/images/kadayawan.webp', alt: 'Kadayawan street dancers in Davao City', depictsVenue: false, creditId: 'kadayawan', caption: 'Photo: Kadayawan street dancers' },
     sources: source('https://davaocity.gov.ph/tourism/kadayawan-village-remains-open-to-public-says-ctoo/', 'village, communities and location, reported 2025')
   },
   {
@@ -47,42 +47,46 @@ export const locations = [
     address: 'Sandawa Plaza, Quimpo Boulevard, Davao City', city: 'Davao City',
     mapsQuery: 'Marina Tuna, Sandawa Plaza, Davao City', status: 'published',
     description: 'A Davao seafood stop listed by the city tourism office on Quimpo Boulevard.',
-    bestFor: 'A seafood meal', image: { path: 'assets/images/marina-tuna-context.webp', alt: 'Fresh seafood displayed in Davao City', depictsVenue: false, creditId: 'marina-tuna-context', caption: 'Davao seafood scene; this is not Marina Tuna.' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/restaurants/marina-tuna-2/', 'restaurant and address')
+    bestFor: 'A seafood meal', image: { path: 'assets/images/marina-tuna-context.webp', alt: 'Fresh seafood displayed in Davao City', depictsVenue: false, creditId: 'marina-tuna-context', caption: 'Photo: Davao seafood display' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/restaurants/marina-tuna-2/', 'restaurant and address')
   },
   {
     id: 'bistro-rosario', name: 'Bistro Rosario', category: 'restaurant', district: 'F. Torres Street',
     address: 'F. Torres Street, Davao City', city: 'Davao City',
     mapsQuery: 'Bistro Rosario Cafe and Bakeshop, F. Torres Street, Davao City', status: 'published',
     description: 'A cafe and bakeshop on F. Torres Street when you want a slower meal or a pastry.',
-    bestFor: 'A casual break', image: { path: 'assets/images/bistro-rosario-context.webp', alt: 'View across Bajada in Davao City', depictsVenue: false, creditId: 'bistro-rosario-context', caption: 'Bajada city view; this is not Bistro Rosario.' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/restaurants/bistro-rosario-cafe-bakeshop/', 'business type and address')
+    bestFor: 'A casual break', image: { path: 'assets/images/bistro-rosario-context.webp', alt: 'View across Bajada in Davao City', depictsVenue: false, creditId: 'bistro-rosario-context', caption: 'Photo: Bajada city view' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/restaurants/bistro-rosario-cafe-bakeshop/', 'business type and address')
   },
   {
     id: 'purge-coffee', name: 'Purge Coffee Roaster', category: 'cafe', district: 'Matina',
     address: 'Tulip Drive, Matina, Davao City', city: 'Davao City',
     mapsQuery: 'Purge Coffee Roaster, Tulip Drive, Matina, Davao City', status: 'published',
     description: 'A coffee stop on Tulip Drive, listed among Davao City tourism office coffee shops.',
-    bestFor: 'A coffee pause', image: { path: 'assets/images/purge-coffee-context.webp', alt: 'MacArthur Highway in Matina with a view of Mount Apo', depictsVenue: false, creditId: 'purge-coffee-context', caption: 'Matina and Mount Apo; this is not Purge Coffee.' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/coffeeshops-2/purge-coffee-roaster/', 'cafe and address')
+    bestFor: 'A coffee pause', image: { path: 'assets/images/purge-coffee-context.webp', alt: 'MacArthur Highway in Matina with a view of Mount Apo', depictsVenue: false, creditId: 'purge-coffee-context', caption: 'Photo: Matina and Mount Apo' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/coffeeshops-2/purge-coffee-roaster/', 'cafe and address')
   },
   {
     id: 'green-coffee', name: 'Green Coffee Bajada', category: 'cafe', district: 'Bajada',
     address: 'Generoso Sobrecaray Street, Barangay 18-B, Davao City', city: 'Davao City',
     mapsQuery: 'Green Coffee Bajada, Davao City', status: 'published',
     description: 'A Bajada coffee stop for a break between city walks.',
-    bestFor: 'A quick recharge', image: { path: 'assets/images/green-coffee-context.webp', alt: 'JP Laurel Avenue in Bajada, Davao City', depictsVenue: false, creditId: 'green-coffee-context', caption: 'JP Laurel Avenue, Bajada; this is not Green Coffee.' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/coffeeshops-2/green-coffee-bajada-branch/', 'branch and address')
+    bestFor: 'A quick recharge', image: { path: 'assets/images/green-coffee-context.webp', alt: 'JP Laurel Avenue in Bajada, Davao City', depictsVenue: false, creditId: 'green-coffee-context', caption: 'Photo: JP Laurel Avenue, Bajada' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/coffeeshops-2/green-coffee-bajada-branch/', 'branch and address')
   },
   {
-    id: 'apo-view', name: 'The Apo View Hotel', category: 'hotel', district: 'Poblacion',
-    address: '150 J. Camus Street, Davao City', city: 'Davao City',
-    mapsQuery: 'The Apo View Hotel, 150 J. Camus Street, Davao City', status: 'published',
-    description: 'A central stay near downtown streets and city landmarks.',
-    bestFor: 'A downtown base', image: { path: 'assets/images/apo-view-context.webp', alt: 'Poblacion skyline in Davao City', depictsVenue: false, creditId: 'apo-view-context', caption: 'Poblacion skyline; this is not The Apo View Hotel.' }, sources: source('https://apoviewhotel.com/contact', 'hotel and address')
+    id: 'seda-abreeza', name: 'Seda Abreeza', category: 'hotel', district: 'Bajada',
+    address: 'J.P. Laurel Avenue, Bajada, Davao City', city: 'Davao City',
+    mapsQuery: 'Seda Abreeza, J.P. Laurel Avenue, Davao City', status: 'published',
+    description: 'A city stay across from Abreeza Mall, useful if shopping is part of your visit.',
+    bestFor: 'A central shopping base', image: { path: 'assets/images/seda-abreeza.webp', alt: 'Exterior of Seda Abreeza hotel in Davao City', depictsVenue: true, creditId: 'seda-abreeza' }, sources: [
+      ...source('https://ir.ayalaland.com.ph/wp-content/uploads/2026/04/ALI-2025-Integrated-Report.pdf', 'hotel reopened after renovation'),
+      ...source('https://static.pbahotels.com/seda-group/assets/images/hotels/86653896bc0851f35fc2a15805175d85a8ef44aa.pdf', 'location across from Abreeza Mall'),
+      ...source('https://loyalty.sedahotels.com/', 'current Davao reservation listing')
+    ]
   },
   {
-    id: 'dusit-residence', name: 'Dusit Thani Residence Davao', category: 'hotel', district: 'Pampanga',
-    address: 'Stella Hizon Reyes Drive, Bo. Pampanga, Davao City', city: 'Davao City',
-    mapsQuery: 'Dusit Thani Residence Davao, Stella Hizon Reyes Drive, Davao City', status: 'published',
-    description: 'A residence-style stay on Stella Hizon Reyes Drive.',
-    bestFor: 'A longer city stay', image: { path: 'assets/images/dusit-context.webp', alt: 'View of Shrine Hills from SM Lanang, Davao City', depictsVenue: false, creditId: 'dusit-context', caption: 'View from SM Lanang; this is not Dusit Thani Residence.' }, sources: source('https://www.dusit.com/dusitthani-residencedavao/contact-us/', 'hotel and address')
+    id: 'park-inn', name: 'Park Inn by Radisson Davao', category: 'hotel', district: 'Agdao',
+    address: 'J.P. Laurel Avenue, Agdao, Davao City', city: 'Davao City',
+    mapsQuery: 'Park Inn by Radisson Davao, J.P. Laurel Avenue, Davao City', status: 'published',
+    description: 'A hotel beside SM Lanang Premier, with footbridge access to the mall.',
+    bestFor: 'A north city base', image: { path: 'assets/images/park-inn.webp', alt: 'Exterior of Park Inn by Radisson Davao beside SM Lanang Premier', depictsVenue: true, creditId: 'park-inn' }, sources: source('https://www.radissonhotels.com/en-us/hotels/park-inn-davao', 'hotel, address and mall access')
   }
 ];
 
@@ -125,8 +129,8 @@ const guideTags = {
   'bistro-rosario': ['food'],
   'purge-coffee': ['food'],
   'green-coffee': ['food'],
-  'apo-view': ['stay'],
-  'dusit-residence': ['stay'],
+  'seda-abreeza': ['stay'],
+  'park-inn': ['stay'],
   'philippine-eagle-center': ['first-time', 'family'],
   'eden-nature-park': ['family'],
   'jacks-ridge': ['tonight', 'first-time']
@@ -136,7 +140,7 @@ const areas = {
   'crocodile-park': 'south', 'kadayawan-village': 'downtown',
   'marina-tuna': 'south', 'bistro-rosario': 'downtown',
   'purge-coffee': 'south', 'green-coffee': 'north',
-  'apo-view': 'downtown', 'dusit-residence': 'north',
+  'seda-abreeza': 'north', 'park-inn': 'north',
   'philippine-eagle-center': 'uplands', 'eden-nature-park': 'uplands',
   'jacks-ridge': 'south'
 };

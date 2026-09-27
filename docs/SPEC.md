@@ -29,6 +29,7 @@ A person receiving the physical card needs a fast, trustworthy Davao City guide 
 - Give every published place card a real, licensed photograph. Use an image of the named place where verifiable; otherwise use a clearly captioned Davao contextual scene. Do not repeat one context photo across unrelated businesses as if it depicts them.
 - Supply 3.5 by 2 inch, 300 ppi PNG files for both physical card faces, alongside editable SVG masters.
 - Keep the print card and QR files in a local owner folder excluded from Git and Vercel. Remove public site links and the public card page. Visitors only need the guide that the card opens.
+- Stay recommendations must use a photograph of the named hotel. If a usable photograph cannot be sourced for a hotel, replace that recommendation with an active Davao City hotel that has a verified, reusable venue photograph. Context captions elsewhere should name what the image shows in plain language.
 
 ## Anti-goals
 
@@ -52,6 +53,7 @@ Booking, payments, accounts, live hours, live event schedules, an embedded map S
 - Category selection, search focus, details, Maps actions, keyboard use, and phone layouts pass browser checks.
 - The physical card is proof printed and scanned on two phones before bulk printing. The confirmed URL is used for the final static QR asset.
 - Every published location renders a loadable photograph, with a visible contextual caption whenever the photograph does not depict the named place.
+- Every Stay card depicts the named hotel, and no card uses defensive copy such as "this is not [venue]". Context cards identify their actual photo subject.
 - Both card-face PNGs exist at 1050 x 600 pixels and their rendered QR decodes to the production root.
 - No card preview, download, or QR file is served from the visitor site after the owner's next deployment; the local owner files are ignored by Git and Vercel. Existing Git history may still contain earlier public artwork and cannot be made private by these changes alone.
 - Full local verification passes and a Git commit exists. GitHub push and Vercel publication are an owner handoff.

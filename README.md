@@ -35,9 +35,9 @@ If the production address ever changes, create a new static QR and replace both 
 
 ## Images and rights
 
-Fourteen resized Commons images are used, with creator and license attribution in the site footer and `docs/SOURCES.md`. They retain their respective Creative Commons licenses. The project's package metadata does not grant rights to relicense those photos. Every place card has a photo. Where a licensed photograph of the named business was unavailable, the card uses a distinct Davao context photo and labels it as such.
+Fourteen resized Commons images are used, with creator and license attribution in the site footer and `docs/SOURCES.md`. They retain their respective Creative Commons licenses. The project's package metadata does not grant rights to relicense those photos. Every place card has a photo. Both Stay cards show the named hotel. Four restaurant and cafe cards use distinct Davao context photos, labeled with the scene they show.
 
-To refresh source images, install Pillow and run `python3 scripts/fetch-images.py`. Review license and subject before adding any new photograph.
+To restore missing source images, install Pillow and run `python3 scripts/fetch-images.py`. Add `--refresh` to download and rebuild existing images. Wikimedia Commons may rate limit bulk refreshes; wait before retrying. Review license and subject before adding any new photograph.
 
 ## Deployment
 

@@ -5,6 +5,7 @@ Each source and license is recorded in docs/SOURCES.md. Requires Pillow.
 """
 from io import BytesIO
 from pathlib import Path
+import sys
 from urllib.request import Request, urlopen
 from urllib.parse import quote
 from PIL import Image, ImageOps
@@ -26,8 +27,8 @@ COMMONS_FILES = {
     'bistro-rosario-context.webp': 'Davao Bajada top view F. Torres (Davao City; 04-21-2024).jpg',
     'purge-coffee-context.webp': 'Davao MacArthur Highway, Matina with Mount Apo view (Davao City; 04-21-2024).jpg',
     'green-coffee-context.webp': 'National Road, Davao JP Laurel Avenue Bajada (Davao City; 04-22-2024).jpg',
-    'apo-view-context.webp': 'Davao Poblacion CM Recto skyline Mesatierra (Davao City; 04-22-2024).jpg',
-    'dusit-context.webp': 'Shrine Hills view from SM Lanang - panoramio.jpg',
+    'seda-abreeza.webp': 'Seda Hotel Davao - panoramio (2).jpg',
+    'park-inn.webp': 'SM Lanang Premier Fountain Court and Park Inn Davao - panoramio.jpg',
 }
 
 def main():
@@ -35,6 +36,10 @@ def main():
     targets = dict(IMAGES)
     targets.update({filename: (f'https://commons.wikimedia.org/wiki/Special:Redirect/file/{quote(title.replace(" ", "_"))}?width=1200', 1000) for filename, title in COMMONS_FILES.items()})
     for filename, (url, max_width) in targets.items():
+        out = DEST / filename
+        if out.exists() and '--refresh' not in sys.argv:
+            print(f'{filename}: already present')
+            continue
         request = Request(url, headers={'User-Agent': 'MadayawDavaoStudentGuide/1.0 (image attribution in docs/SOURCES.md)'})
         with urlopen(request, timeout=30) as response:
             raw = response.read()
@@ -42,7 +47,6 @@ def main():
             image = ImageOps.exif_transpose(opened).convert('RGB')
             if image.width > max_width:
                 image.thumbnail((max_width, 10000), Image.Resampling.LANCZOS)
-            out = DEST / filename
             image.save(out, 'WEBP', quality=76, method=6)
             print(f'{filename}: {image.width}x{image.height}, {out.stat().st_size:,} bytes')
 

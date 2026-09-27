@@ -26,6 +26,8 @@ for (const loc of locations) {
   if (loc.image) {
     required(exists(loc.image.path) && fs.statSync(path.join(root, loc.image.path)).size < 500_000, `Image missing or oversized: ${loc.id}`);
     required(Boolean(loc.image.alt && loc.image.creditId && (loc.image.depictsVenue || loc.image.caption)), `Image caption/credit: ${loc.id}`);
+    if (loc.category === 'hotel') required(loc.image.depictsVenue === true && !loc.image.caption, `Stay image must depict hotel: ${loc.id}`);
+    if (!loc.image.depictsVenue) required(/^Photo: .+/.test(loc.image.caption) && !/this is not|does not show/i.test(loc.image.caption), `Context caption must identify the scene: ${loc.id}`);
   }
   for (const url of [buildGoogleMapsUrl(loc), buildGoogleDirectionsUrl(loc)]) {
     const parsed = new URL(url);

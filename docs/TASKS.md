@@ -55,3 +55,15 @@ The owner's correction authorizes this extension of the approved work. Execute i
 - T14 complete: all 13 location records now require images, contextual scenes have visible captions, and the public credits include every added creator. Verification: `npm run verify -- --final` passed. Browser loading is checked during T16. Next: T15.
 - T15 complete: moved print SVGs and QR into local `owner-card/`, rendered 1050 x 600 PNG faces at 300 ppi, removed public card page/assets/navigation, and added Git/Vercel ignore rules. Verification: PNG geometry and zxing QR decode passed; `git check-ignore` matched owner files; visitor DOM has no card links. Next: T16.
 - T16 complete: final verifier, four viewport browser image checks, local owner preview, QR decoding, ignore checks, and diff validation passed. Correction is ready for a local Git commit and owner publication from VS Code.
+
+## 2026-09-27 correction: property-specific stay photos
+
+| ID | Depends on | Files and work | Binary DoD | Verification |
+|---|---|---|---|---|
+| T17 | T16 | Confirm current Davao hotel alternatives and Commons photo licenses; update `docs/SOURCES.md` and `scripts/fetch-images.py` | Two Stay recommendations have active operator pages and reusable photos depicting the named hotels | Operator and Commons source review; `python3 scripts/fetch-images.py` |
+| T18 | T17 | Replace stay records and image credits; simplify context captions; update `scripts/verify-system.js` | Stay cards show their hotels, caption copy describes the real scene, no stale Dusit image remains | `npm run verify -- --final`; browser photo and copy inspection |
+| T19 | T18 | Update `README.md`, `docs/AUDIT.md`; complete QA and commit locally | Source register, browser, verifier, and Git commit reflect the corrected stay cards | Browser at 390/1440 px; `npm run verify -- --final`; `git diff --check`; `git log -1 --oneline` |
+
+- T17 complete: current operator evidence and reusable Commons photos were confirmed for Seda Abreeza and Park Inn by Radisson Davao. Both photos visibly show their named hotels; the old context assets were removed. Verification: source/license review, visual inspection, and `python3 scripts/fetch-images.py` passed. Next: T18.
+- T18 complete: Stay records now use Seda Abreeza and Park Inn building photos, credits were updated, context captions name their actual scenes, and the verifier requires property photos for Stay. Verification: `npm run verify -- --final` passed; browser at 390 and 1440 px loaded both hotel photos with no Stay caption, overflow, or page error. Next: T19.
+- T19 complete: README and audit describe the corrected images and owner publication boundary. Verification: `npm run verify -- --final`, browser checks at 390 and 1440 px for all 13 images and five factual captions, `git diff --check`, and local Git commit passed. GitHub push remains with the owner.
