@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Download and resize credited Wikimedia Commons images used by the guide.
+"""Download and resize source-registered photos used by the guide.
 
-Each source and license is recorded in docs/SOURCES.md. Requires Pillow.
+Each image source and reuse status is recorded in docs/SOURCES.md. Requires Pillow.
 """
 from io import BytesIO
 from pathlib import Path
@@ -23,24 +23,44 @@ COMMONS_FILES = {
     'philippine-eagle-center.webp': 'Philippine Eagle at the Philippine Eagle Center 003.jpg',
     'eden-nature-park.webp': 'Eden Nature Park panorama.jpg',
     'jacks-ridge.webp': 'Davao.JPG',
-    'marina-tuna-context.webp': 'Fresh Seafood at davao city.jpg',
-    'bistro-rosario-context.webp': 'Davao Bajada top view F. Torres (Davao City; 04-21-2024).jpg',
-    'purge-coffee-context.webp': 'Davao MacArthur Highway, Matina with Mount Apo view (Davao City; 04-21-2024).jpg',
-    'green-coffee-context.webp': 'National Road, Davao JP Laurel Avenue Bajada (Davao City; 04-22-2024).jpg',
     'seda-abreeza.webp': 'Seda Hotel Davao - panoramio (2).jpg',
     'park-inn.webp': 'SM Lanang Premier Fountain Court and Park Inn Davao - panoramio.jpg',
+}
+VENUE_IMAGES = {
+    'marina-tuna.webp': ('https://tourism.davaocity.gov.ph/wp-content/uploads/2019/09/MARINA.jpg', 1000),
+    'bistro-rosario.webp': ('https://tourism.davaocity.gov.ph/wp-content/uploads/2022/06/ROS.jpg', 1000),
+    'purge-coffee.webp': ('https://tourism.davaocity.gov.ph/wp-content/uploads/2022/05/purge.jpg', 1000),
+    'green-coffee.webp': ('https://tourism.davaocity.gov.ph/wp-content/uploads/2019/08/56.jpg', 1200),
+    'davao-famous.webp': ('https://static.wixstatic.com/media/982a2d_03557b791cbf47589b7c88fe45604305~mv2.jpg', 1200),
+    'totsys.webp': ('https://eatsmejax.com/wp-content/uploads/2024/05/20240428_125428.jpg?w=1024', 1000),
+    'barok.webp': ('https://live.staticflickr.com/65535/54410663340_ec58372f10_w.jpg', 800, 'https://www.davaofoodtrips.com/'),
+    'capris.webp': ('https://cf-images.assettype.com/sunstar/2025-07-12/x76hog74/RJL10-1.jpg?auto=format%2Ccompress&w=1024', 1000),
+    'la-flee.webp': ('https://eatsmejax.com/wp-content/uploads/2025/04/20250404_211054.jpg?w=1024', 1000),
+    'atcurbside.webp': ('https://i0.wp.com/kapediaries.com/wp-content/uploads/2023/09/ATCURBSIDE.jpg?resize=748%2C748&ssl=1', 900),
+    'robata.webp': ('https://i0.wp.com/davaofoodtographer.com/wp-content/uploads/2023/01/Robata-Davao-scaled.jpg?fit=1200%2C900&ssl=1', 1100),
+    'tiny-kitchen.webp': ('https://www.wheninmanila.com/wp-content/uploads/2014/04/Tiny-Kitchen-and-Dulce-Vida-Where-Spanish-Cuisine-and-Delectable-Dessert-Creations-make-a-Delightful-Davao-City-Getaway-Facade.jpg', 1000),
+    'black-scoop.webp': ('https://ak-d.tripcdn.com/images/1mi58224x8txrs1uh0027_W_640_0_R5_Q80.jpg?proc=source%2Ftrip', 800),
+    'lara-mia.webp': ('https://static.where-e.com/Philippines/Davao_Region/Talomo/Lara-Mia-Caf-Bistro_8b8a37ca43fc5cb37ac4981355ca1dbf.jpg', 1000),
+    'blarneys.webp': ('https://eatsmejax.com/wp-content/uploads/2025/11/copyofcopyofcopyofgratefulbread_20251110_114909_0000.png?w=1024', 1000),
+    'hygge-coffee.webp': ('https://live.staticflickr.com/65535/54776320669_b885c88e2e_w.jpg', 800, 'https://www.davaofoodtrips.com/'),
+    'daily-dose.webp': ('https://images.deliveryhero.io/image/fd-ph/Products/50945864.jpg?height=900&width=900', 900),
 }
 
 def main():
     DEST.mkdir(parents=True, exist_ok=True)
     targets = dict(IMAGES)
     targets.update({filename: (f'https://commons.wikimedia.org/wiki/Special:Redirect/file/{quote(title.replace(" ", "_"))}?width=1200', 1000) for filename, title in COMMONS_FILES.items()})
-    for filename, (url, max_width) in targets.items():
+    targets.update(VENUE_IMAGES)
+    for filename, details in targets.items():
+        url, max_width, *referer = details
         out = DEST / filename
         if out.exists() and '--refresh' not in sys.argv:
             print(f'{filename}: already present')
             continue
-        request = Request(url, headers={'User-Agent': 'MadayawDavaoStudentGuide/1.0 (image attribution in docs/SOURCES.md)'})
+        headers = {'User-Agent': 'MadayawDavaoStudentGuide/1.0 (image attribution in docs/SOURCES.md)'}
+        if referer:
+            headers['Referer'] = referer[0]
+        request = Request(url, headers=headers)
         with urlopen(request, timeout=30) as response:
             raw = response.read()
         with Image.open(BytesIO(raw)) as opened:

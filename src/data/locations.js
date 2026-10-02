@@ -8,6 +8,7 @@ export const categories = [
 
 const checkedAt = '2026-09-27';
 const source = (url, supports) => [{ url, checkedAt, supports }];
+const businessSource = (url, supports) => [{ url, checkedAt: '2026-10-02', supports }];
 
 export const locations = [
   {
@@ -47,28 +48,28 @@ export const locations = [
     address: 'Sandawa Plaza, Quimpo Boulevard, Davao City', city: 'Davao City',
     mapsQuery: 'Marina Tuna, Sandawa Plaza, Davao City', status: 'published',
     description: 'A Davao seafood stop listed by the city tourism office on Quimpo Boulevard.',
-    bestFor: 'A seafood meal', image: { path: 'assets/images/marina-tuna-context.webp', alt: 'Fresh seafood displayed in Davao City', depictsVenue: false, creditId: 'marina-tuna-context', caption: 'Photo: Davao seafood display' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/restaurants/marina-tuna-2/', 'restaurant and address')
+    bestFor: 'A seafood meal', image: { path: 'assets/images/marina-tuna.webp', alt: 'Entrance and sign at Marina Tuna on Quimpo Boulevard', depictsVenue: true, creditId: 'marina-tuna' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/restaurants/marina-tuna-2/', 'restaurant and address')
   },
   {
     id: 'bistro-rosario', name: 'Bistro Rosario', category: 'restaurant', district: 'F. Torres Street',
     address: 'F. Torres Street, Davao City', city: 'Davao City',
     mapsQuery: 'Bistro Rosario Cafe and Bakeshop, F. Torres Street, Davao City', status: 'published',
-    description: 'A cafe and bakeshop on F. Torres Street when you want a slower meal or a pastry.',
-    bestFor: 'A casual break', image: { path: 'assets/images/bistro-rosario-context.webp', alt: 'View across Bajada in Davao City', depictsVenue: false, creditId: 'bistro-rosario-context', caption: 'Photo: Bajada city view' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/restaurants/bistro-rosario-cafe-bakeshop/', 'business type and address')
+    description: 'A cafe and bakeshop on F. Torres Street for a meal or a pastry.',
+    bestFor: 'A casual break', image: { path: 'assets/images/bistro-rosario.webp', alt: 'Dining room inside Bistro Rosario on F. Torres Street', depictsVenue: true, creditId: 'bistro-rosario' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/restaurants/bistro-rosario-cafe-bakeshop/', 'business type and address')
   },
   {
     id: 'purge-coffee', name: 'Purge Coffee Roaster', category: 'cafe', district: 'Matina',
     address: 'Tulip Drive, Matina, Davao City', city: 'Davao City',
     mapsQuery: 'Purge Coffee Roaster, Tulip Drive, Matina, Davao City', status: 'published',
     description: 'A coffee stop on Tulip Drive, listed among Davao City tourism office coffee shops.',
-    bestFor: 'A coffee pause', image: { path: 'assets/images/purge-coffee-context.webp', alt: 'MacArthur Highway in Matina with a view of Mount Apo', depictsVenue: false, creditId: 'purge-coffee-context', caption: 'Photo: Matina and Mount Apo' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/coffeeshops-2/purge-coffee-roaster/', 'cafe and address')
+    bestFor: 'A coffee pause', image: { path: 'assets/images/purge-coffee.webp', alt: 'Purge Coffee Roaster storefront on Tulip Drive', depictsVenue: true, creditId: 'purge-coffee' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/coffeeshops-2/purge-coffee-roaster/', 'cafe and address')
   },
   {
     id: 'green-coffee', name: 'Green Coffee Bajada', category: 'cafe', district: 'Bajada',
     address: 'Generoso Sobrecaray Street, Barangay 18-B, Davao City', city: 'Davao City',
     mapsQuery: 'Green Coffee Bajada, Davao City', status: 'published',
     description: 'A Bajada coffee stop for a break between city walks.',
-    bestFor: 'A quick recharge', image: { path: 'assets/images/green-coffee-context.webp', alt: 'JP Laurel Avenue in Bajada, Davao City', depictsVenue: false, creditId: 'green-coffee-context', caption: 'Photo: JP Laurel Avenue, Bajada' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/coffeeshops-2/green-coffee-bajada-branch/', 'branch and address')
+    bestFor: 'A quick recharge', image: { path: 'assets/images/green-coffee.webp', alt: 'Green Coffee sign and entrance at the Bajada branch', depictsVenue: true, creditId: 'green-coffee' }, sources: source('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/coffeeshops-2/green-coffee-bajada-branch/', 'branch and address')
   },
   {
     id: 'seda-abreeza', name: 'Seda Abreeza', category: 'hotel', district: 'Bajada',
@@ -120,6 +121,155 @@ locations.push(
   }
 );
 
+locations.push(
+  {
+    id: 'davao-famous', name: 'Davao Famous', category: 'restaurant', district: 'Magsaysay Avenue',
+    address: '#401 R. Magsaysay Avenue, Davao City', city: 'Davao City',
+    mapsQuery: 'New Davao Famous Restaurant, 401 R. Magsaysay Avenue, Davao City', status: 'published',
+    description: 'A long-running, family-style Chinese restaurant on Magsaysay Avenue.',
+    bestFor: 'A classic Chinese-Filipino meal', image: { path: 'assets/images/davao-famous.webp', alt: 'Dining room inside New Davao Famous Restaurant on Magsaysay Avenue', depictsVenue: true, creditId: 'davao-famous' },
+    sources: [
+      ...businessSource('https://tourism.davaocity.gov.ph/explore-the-city/restaurants/restaurants/new-davao-famous-restaurant-magsaysay-branch/', 'Magsaysay branch and address'),
+      ...businessSource('https://newdavaofamous.com/about-us', 'family-style Chinese dining and business history')
+    ]
+  },
+  {
+    id: 'totsys', name: "Totsy's Cakes and Pastries", category: 'restaurant', district: 'Bajada',
+    address: 'Ascendido Building, Pryce Business Park, J.P. Laurel Avenue, Barangay 18-B, Davao City', city: 'Davao City',
+    mapsQuery: "Totsy's Cakes and Pastries, Ascendido Building, Pryce Business Park, Davao City", status: 'published',
+    description: 'A bakery and cafe in Ascendido for cakes, pastries, coffee, and meals.',
+    bestFor: 'A pastry or a full meal', image: { path: 'assets/images/totsys.webp', alt: "Totsy's Cakes and Pastries sign at the Ascendido branch in Davao", depictsVenue: true, creditId: 'totsys' },
+    sources: [
+      ...businessSource('https://www.foodpanda.ph/restaurant/m99c/totsys-cakes-and-pastries-ascendido-building', 'Ascendido branch, menu, and address'),
+      ...businessSource('https://eatsmejax.com/2024/05/08/totsys-a-beloved-bukidnon-favorite-now-in-davao/', 'Davao branch background')
+    ]
+  },
+  {
+    id: 'barok', name: 'Barok Cafe & Resto', category: 'cafe', district: 'Bajada',
+    address: 'Pryce Business Park, J.P. Laurel Avenue, Bajada, Davao City', city: 'Davao City',
+    mapsQuery: 'Barok Cafe and Resto, Pryce Business Park, Davao City', status: 'published',
+    description: 'A cafe and resto beside Ascendido Building in Pryce Business Park.',
+    bestFor: 'Coffee and a casual meal', image: { path: 'assets/images/barok.webp', alt: 'Barok Cafe and Resto counter at Pryce Business Park', depictsVenue: true, creditId: 'barok' },
+    sources: [
+      ...businessSource('https://www.davaofoodtrips.com/coffee-shop/24-7-barok-cafe-resto-opens-in-pryce-business-park.html', 'Pryce Business Park branch and cafe/restaurant'),
+      ...businessSource('https://www.facebook.com/barokcafeandresto/', 'current business listing')
+    ]
+  },
+  {
+    id: 'capris', name: "Capri's Restaurant and Deli", category: 'restaurant', district: 'Bajada',
+    address: 'J.P. Laurel Avenue, Bajada, Davao City', city: 'Davao City',
+    mapsQuery: "Capri's Restaurant and Deli, J.P. Laurel Avenue, Bajada, Davao City", status: 'published',
+    description: 'Modern European and Western plates in a spacious Bajada dining room.',
+    bestFor: 'A sit-down lunch or dinner', image: { path: 'assets/images/capris.webp', alt: "Dining room at Capri's Restaurant and Deli in Bajada", depictsVenue: true, creditId: 'capris' },
+    sources: [
+      ...businessSource('https://www.davaofoodtrips.com/places-to-eat-in-davao/capris/new-davao-resto-alert-capris.html', 'Bajada location and restaurant opening'),
+      ...businessSource('https://www.sunstar.com.ph/davao/a-mid-week-lunch-at-capris', 'restaurant menu and interior')
+    ]
+  },
+  {
+    id: 'la-flee', name: 'La Flee Ristorante & Lounge', category: 'restaurant', district: 'Bajada',
+    address: 'Second floor, SK Complex, J.P. Laurel Avenue, Bajada, Davao City', city: 'Davao City',
+    mapsQuery: 'La Flee Ristorante and Lounge, SK Complex, J.P. Laurel Avenue, Davao City', status: 'published',
+    description: 'Italian-American dishes and a lounge setting inside SK Complex.',
+    bestFor: 'Dinner and a lounge stop', image: { path: 'assets/images/la-flee.webp', alt: 'Lounge interior at La Flee Ristorante and Lounge in Bajada', depictsVenue: true, creditId: 'la-flee' },
+    sources: [
+      ...businessSource('https://eatsmejax.com/2025/04/22/davao-la-fle-e-ristorante-lounge/', 'Bajada address, dining room, and cuisine'),
+      ...businessSource('https://vaplatinum.com.au/wp-content/uploads/2025/08/VAP-Davao-Guide-2025-V1.pdf', 'visitor address reference')
+    ]
+  },
+  {
+    id: 'atcurbside', name: 'AtCurbside', category: 'cafe', district: 'Marfori Heights',
+    address: 'Paseo Uno Building, Ruby Street, Marfori Heights, Davao City', city: 'Davao City',
+    mapsQuery: 'AtCurbside Cafe, Paseo Uno Building, Ruby Street, Davao City', status: 'published',
+    description: 'A coffee stop on Ruby Street for espresso drinks and cafe food.',
+    bestFor: 'Coffee, baps, and quesadillas', image: { path: 'assets/images/atcurbside.webp', alt: 'AtCurbside cafe front at Paseo Uno Building in Marfori Heights', depictsVenue: true, creditId: 'atcurbside' },
+    sources: [
+      ...businessSource('https://www.davaofoodtrips.com/menu/menu-atcurbside-coffee-updated-as-of-january-2026.html', 'January 2026 cafe menu and branch'),
+      ...businessSource('https://atcurbside.com/', 'business and menu information')
+    ]
+  },
+  {
+    id: 'robata', name: 'Robata Davao', category: 'restaurant', district: 'Matina',
+    address: 'The Compound, Carlos Villa-Abrille Drive, Juna Subdivision, Matina, Davao City', city: 'Davao City',
+    mapsQuery: 'Robata Davao inside The Compound, Carlos Villa-Abrille Drive, Davao City', status: 'published',
+    description: 'Japanese dining near Tulip Drive, with sushi, ramen, and grilled dishes.',
+    bestFor: 'Japanese food in Matina', image: { path: 'assets/images/robata.webp', alt: 'Sushi and grilled dishes served at Robata Davao', depictsVenue: false, creditId: 'robata', caption: 'Photo: dishes served at Robata Davao' },
+    sources: [
+      ...businessSource('https://www.waze.com/live-map/directions/ph/davao-region/davao-city/the-compound?to=place.ChIJwcCFudxz-TIRwTFsMm2VcHY', 'The Compound location pin for the recently opened Robata branch'),
+      ...businessSource('https://www.reddit.com/r/davao/comments/1w8jbir/hisher_cafe_azuela_cove/', 'September 2026 report that Robata left the Azuela Cove G Center lease and opened at The Compound; exact unit remains unconfirmed'),
+      ...businessSource('https://davaofoodtographer.com/resto-review-robata-davao-at-the-azuela-cove/', 'Azuela Cove restaurant, menu, and venue review'),
+      ...businessSource('https://restaurantguru.com/Robata-Davao-Davao-City', 'recent activity listing')
+    ]
+  },
+  {
+    id: 'tiny-kitchen', name: 'Tiny Kitchen Creations', category: 'restaurant', district: 'F. Torres Street',
+    address: 'Corner of F. Torres and Mabini Streets, Poblacion District, Davao City', city: 'Davao City',
+    mapsQuery: 'Tiny Kitchen Creations, F. Torres Street and Mabini Street, Davao City', status: 'published',
+    description: 'Spanish home-style dishes, including paella, at F. Torres and Mabini.',
+    bestFor: 'A Spanish-style meal downtown', image: { path: 'assets/images/tiny-kitchen.webp', alt: 'Tiny Kitchen Creations facade at its F. Torres Street location', depictsVenue: true, creditId: 'tiny-kitchen', caption: 'Photo: Tiny Kitchen facade, 2014' },
+    sources: [
+      ...businessSource('https://www.tripadvisor.com.ph/Restaurant_Review-g294252-d2560500-Reviews-Tiny_Kitchen_Creations-Mindanao.html', 'restaurant, Spanish cuisine, and location'),
+      ...businessSource('https://davaostart.com/business/tiny-kitchen-creations/', 'F. Torres and Mabini location'),
+      ...businessSource('https://www.davaocitydirectory.com/food-and-beverages/restaurants/tiny-kitchen.html', 'business listing')
+    ]
+  },
+  {
+    id: 'black-scoop', name: 'Black Scoop Cafe', category: 'cafe', district: 'Juna, Matina',
+    address: 'Units 1-3, McPod 2 Building, Camachili Street corner Acacia Street, Juna Subdivision, Matina, Davao City', city: 'Davao City',
+    mapsQuery: 'Black Scoop Cafe Matina, Camachili Street and Acacia Street, Davao City', status: 'published',
+    description: 'Coffee, milk tea, desserts, and meals at the Juna branch.',
+    bestFor: 'Coffee, milk tea, and a snack', image: { path: 'assets/images/black-scoop.webp', alt: 'Menu counter and cafe interior at Black Scoop Cafe Matina', depictsVenue: true, creditId: 'black-scoop' },
+    sources: [
+      ...businessSource('https://www.foodpanda.ph/restaurant/b6dh/black-scoop-cafe-matina', 'Matina branch, menu, and address'),
+      ...businessSource('https://us.trip.com/moments/detail/pampanga-1474363-120078854/', 'visitor photo post identifies the Davao Matina branch')
+    ]
+  },
+  {
+    id: 'lara-mia', name: 'Lara Mia Cafe & Bistro', category: 'cafe', district: 'Juna, Matina',
+    address: 'University Avenue corner Talisay Street, Juna Subdivision, Matina, Davao City', city: 'Davao City',
+    mapsQuery: 'Lara Mia Cafe and Bistro, University Avenue, Juna, Davao City', status: 'published',
+    description: 'Italian-style meals and desserts at University Avenue in Juna.',
+    bestFor: 'A cafe meal and dessert', image: { path: 'assets/images/lara-mia.webp', alt: 'Lara Mia Cafe and Bistro entrance in Juna, Matina', depictsVenue: true, creditId: 'lara-mia' },
+    sources: [
+      ...businessSource('https://www.davaocitydirectory.com/food-and-beverages/bakeshops-cakes-pastries/lara-mia-cafe-bistro.html', 'business address and cafe/bistro listing'),
+      ...businessSource('https://wanderlog.com/place/details/1391961/lara-mia-caf%C3%A9--bistro', 'current location listing')
+    ]
+  },
+  {
+    id: 'blarneys', name: "Blarney's Irish Pub", category: 'restaurant', district: 'Poblacion',
+    address: 'V. Mapa Street corner Tavera Street, Poblacion District, Davao City', city: 'Davao City',
+    mapsQuery: "Blarney's Irish Pub, V. Mapa Street and Tavera Street, Davao City", status: 'published',
+    description: 'An Irish-style pub downtown for pub food and drinks.',
+    bestFor: 'A downtown night out', image: { path: 'assets/images/blarneys.webp', alt: "Blarney's Irish Pub interior, bar, and food in Davao City", depictsVenue: true, creditId: 'blarneys' },
+    sources: [
+      ...businessSource('https://wanderlog.com/place/details/15134878/blarneys-irish-pub', 'current address and pub listing'),
+      ...businessSource('https://www.davaocitydirectory.com/tag/irish-pub', 'Davao City business directory')
+    ]
+  },
+  {
+    id: 'hygge-coffee', name: 'Hygge Coffee', category: 'cafe', district: 'Juna, Matina',
+    address: 'Ground floor, 8Espacio, Juna Avenue, Matina, Davao City', city: 'Davao City',
+    mapsQuery: 'Hygge Coffee 8Espacio, Juna Avenue, Davao City', status: 'published',
+    description: 'A coffee stop on Juna Avenue with light meals.',
+    bestFor: 'Coffee in Matina', image: { path: 'assets/images/hygge-coffee.webp', alt: 'Hygge Coffee soft opening banner at the 8Espacio branch in Juna', depictsVenue: true, creditId: 'hygge-coffee' },
+    sources: [
+      ...businessSource('https://www.davaofoodtrips.com/coffee-shop/hygge-coffee/hygge-coffee-opens-3rd-branch-in-juna.html', 'Juna branch at 8Espacio'),
+      ...businessSource('https://www.foodpanda.ph/restaurant/df75/hygge-coffee-juan-luna', 'brand and menu listing')
+    ]
+  },
+  {
+    id: 'daily-dose', name: 'Daily Dose Coffee Bar, Maa', category: 'cafe', district: 'Maa',
+    address: 'Unit CO1, Trentino Building, Palmetto Place, Don J. Rodriguez Avenue, Maa, Davao City', city: 'Davao City',
+    mapsQuery: 'Daily Dose Coffee Bar Maa, Trentino Building, Davao City', status: 'published',
+    description: 'Coffee and all-day meals at the Maa branch, south of the city center.',
+    bestFor: 'Coffee and a meal in Maa', image: { path: 'assets/images/daily-dose.webp', alt: 'Iced coffee from the Daily Dose Coffee Bar Maa menu', depictsVenue: false, creditId: 'daily-dose', caption: 'Photo: iced coffee from the Daily Dose Coffee Bar Maa menu' },
+    sources: [
+      ...businessSource('https://www.foodpanda.ph/restaurant/vmh3/daily-dose-coffee-bar-maa', 'active Maa branch, address, menu, and 2026 reviews'),
+      ...businessSource('https://www.foodpanda.ph/city/davao-city/cuisine/coffee?page=2', 'current Davao City listing')
+    ]
+  }
+);
+
 const guideTags = {
   'peoples-park': ['first-time', 'family'],
   'roxas-night-market': ['first-time', 'tonight', 'food'],
@@ -133,7 +283,20 @@ const guideTags = {
   'park-inn': ['stay'],
   'philippine-eagle-center': ['first-time', 'family'],
   'eden-nature-park': ['family'],
-  'jacks-ridge': ['tonight', 'first-time']
+  'jacks-ridge': ['tonight', 'first-time'],
+  'davao-famous': ['first-time', 'family', 'food'],
+  'totsys': ['family', 'food'],
+  'barok': ['food'],
+  'capris': ['family', 'food'],
+  'la-flee': ['tonight', 'food'],
+  'atcurbside': ['food'],
+  'robata': ['food'],
+  'tiny-kitchen': ['first-time', 'food'],
+  'black-scoop': ['food'],
+  'lara-mia': ['food'],
+  'blarneys': ['tonight', 'food'],
+  'hygge-coffee': ['food'],
+  'daily-dose': ['food']
 };
 const areas = {
   'peoples-park': 'downtown', 'roxas-night-market': 'downtown',
@@ -142,7 +305,12 @@ const areas = {
   'purge-coffee': 'south', 'green-coffee': 'north',
   'seda-abreeza': 'north', 'park-inn': 'north',
   'philippine-eagle-center': 'uplands', 'eden-nature-park': 'uplands',
-  'jacks-ridge': 'south'
+  'jacks-ridge': 'south',
+  'davao-famous': 'downtown', 'totsys': 'north', 'barok': 'north',
+  'capris': 'north', 'la-flee': 'north', 'atcurbside': 'downtown',
+  'robata': 'north', 'tiny-kitchen': 'downtown', 'black-scoop': 'south',
+  'lara-mia': 'south', 'blarneys': 'downtown', 'hygge-coffee': 'south',
+  'daily-dose': 'south'
 };
 for (const place of locations) {
   place.intents = guideTags[place.id];

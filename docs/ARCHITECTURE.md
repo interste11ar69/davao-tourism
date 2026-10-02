@@ -24,7 +24,7 @@ Delivery boundary: the implementation is committed locally. The project owner pu
 
 ## Contracts
 
-`Location = {id, name, category: 'spot'|'restaurant'|'cafe'|'hotel', district, address, city: 'Davao City', area: 'downtown'|'south'|'north'|'uplands', intents: string[], coordinates?, mapsQuery, placeId?, description, bestFor?, image: {path, alt, depictsVenue, creditId, caption?}, sources: [{url, checkedAt, supports}], status}`. Only published records render. Stay records require `depictsVenue: true`; context cards require a caption naming the actual subject. A coordinate alone does not identify a business.
+`Location = {id, name, category: 'spot'|'restaurant'|'cafe'|'hotel', district, address, city: 'Davao City', area: 'downtown'|'south'|'north'|'uplands', intents: string[], coordinates?, mapsQuery, placeId?, description, bestFor?, image: {path, alt, depictsVenue, creditId, caption?}, sources: [{url, checkedAt, supports}], status}`. Only published records render. Stay records require a photo of the named hotel. Restaurant and cafe records show the named premises or a real menu item from that business, with menu photos labeled in `caption`. Contextual images remain available for cultural stories only. A coordinate alone does not identify a business. Every photo credit records its stated license or says reuse permission is unconfirmed; attribution is not a license.
 
 `Story = {id, title, body, image?, sources:[{url,checkedAt,supports}], dated?}`. Current schedules need a current official source or are omitted.
 
@@ -77,7 +77,7 @@ Identity: a driver's compact Davao field guide, with real city photography rathe
 
 ## Risks and mitigations
 
-Venue facts change: keep source and checked date, omit unsourced live claims. Images can misrepresent venues or violate licenses: keep attribution and replace or label context images; featured hotels require licensed photographs of the named property. Cultural copy can oversimplify: use city sources and respectful language, avoid invented motifs. QR can encode a wrong or private URL: wait for the exact production address and scan a proof. Images can slow phones: compress, size responsively, lazy load, measure transfer. Search rerenders and HTML interpolation can break typing or inject markup: keep input stable and escape user strings. Maps can point to the wrong business: verify Place ID or name and address manually. Remove unsupported official-status language.
+Venue facts change: keep source and checked date, omit unsourced live claims. Images can misrepresent venues or violate licenses: keep attribution and license/permission records; business-category photos must show the named business. An image with unconfirmed reuse rights blocks public release even when its source is credited. Cultural copy can oversimplify: use city sources and respectful language, avoid invented motifs. QR can encode a wrong or private URL: wait for the exact production address and scan a proof. Images can slow phones: compress, size responsively, lazy load, measure transfer. Search rerenders and HTML interpolation can break typing or inject markup: keep input stable and escape user strings. Maps can point to the wrong business: verify Place ID or name and address manually. Remove unsupported official-status language.
 
 ## Coverage
 

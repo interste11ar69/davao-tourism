@@ -35,12 +35,14 @@ If the production address ever changes, create a new static QR and replace both 
 
 ## Images and rights
 
-Fourteen resized Commons images are used, with creator and license attribution in the site footer and `docs/SOURCES.md`. They retain their respective Creative Commons licenses. The project's package metadata does not grant rights to relicense those photos. Every place card has a photo. Both Stay cards show the named hotel. Four restaurant and cafe cards use distinct Davao context photos, labeled with the scene they show.
+Every one of the 26 place cards has a local WebP image. The 17 restaurant and cafe cards use photos associated with their own business. Fifteen show the named premises; Robata and Daily Dose use menu-item photos with captions that identify the business. The unrelated seafood and street scenes previously shown on Marina Tuna, Bistro Rosario, Purge Coffee, and Green Coffee were replaced with photos of those venues. The two Stay cards show the named hotels.
 
-To restore missing source images, install Pillow and run `python3 scripts/fetch-images.py`. Add `--refresh` to download and rebuild existing images. Wikimedia Commons may rate limit bulk refreshes; wait before retrying. Review license and subject before adding any new photograph.
+Ten retained images use Creative Commons licenses. The 17 restaurant and cafe photos come from city, business, delivery, and editorial pages that do not state reuse terms. `docs/SOURCES.md` and the footer record the source and permission status. Credit does not grant permission, so this local review build must not be pushed or deployed until the owner obtains permission or replaces those files with licensed photos. Robata's photo shows dishes from the business, not the newly selected branch interior; its listing points to The Compound while that branch's exact unit still needs confirmation.
+
+To restore missing source images, install Pillow and run `python3 scripts/fetch-images.py`. Add `--refresh` to download and rebuild existing images. Review each source's current reuse terms and photo subject before release.
 
 ## Deployment
 
 The configured GitHub origin is connected to the existing Vercel project. Production address: `https://davao-tourism.vercel.app/`. Use the production domain for printed QR codes; individual preview deployment addresses are not card destinations. Confirm the public page after each production update.
 
-To publish later from VS Code, push the local `main` branch to `origin`. Then wait for the Vercel production deployment and confirm that the visitor guide and Lance C. Lastimosa credit are visible. Confirm that `/card` and the old `/assets/card/` paths return 404. The card files are ignored by Git and Vercel, so send them to the owner privately if they are needed on another computer. Older card SVGs remain in Git history if the repository is public. Do not order physical cards until the live check and a two-phone print proof pass.
+These changes remain local and unpushed, as requested. After image reuse rights and the Robata branch pin are resolved, push the local `main` branch from VS Code, wait for the Vercel production deployment, and confirm the visitor guide and Lance C. Lastimosa credit. Confirm that `/card` and the old `/assets/card/` paths return 404. The card files are ignored by Git and Vercel, so send them to the owner privately if needed on another computer. Older card SVGs remain in Git history if the repository is public. Do not order physical cards until the live check and a two-phone print proof pass.
