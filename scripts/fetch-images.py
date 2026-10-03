@@ -20,13 +20,21 @@ IMAGES = {
     'crocodile-park.webp': ('https://upload.wikimedia.org/wikipedia/commons/1/1e/Pangil_at_Davao_Crocodile_Park.jpg', 1000),
 }
 COMMONS_FILES = {
-    'philippine-eagle-center.webp': 'Philippine Eagle at the Philippine Eagle Center 003.jpg',
     'eden-nature-park.webp': 'Eden Nature Park panorama.jpg',
     'jacks-ridge.webp': 'Davao.JPG',
     'seda-abreeza.webp': 'Seda Hotel Davao - panoramio (2).jpg',
     'park-inn.webp': 'SM Lanang Premier Fountain Court and Park Inn Davao - panoramio.jpg',
 }
 VENUE_IMAGES = {
+    'dusit-thani.webp': ('https://www.dusit.com/dusitthani-residencedavao/wp-content/uploads/sites/20/2026/04/dusit-thani-residence-davao-exterior-scaled.jpg', 1200),
+    'acacia-hotel.webp': ('https://acaciahotelsdavao-com.b-cdn.net/wp-content/uploads/2024/09/FACADE-PORTRAIT-1.jpg', 1000),
+    'grand-regal.webp': ('https://tourism.davaocity.gov.ph/wp-content/uploads/2022/05/GRAND-REGAL.jpg', 1000),
+    'aeon-suites.webp': ('https://bookandlink-webku-assets.s3.ap-southeast-1.amazonaws.com/webku/listing/6aa8fcd192bae_1789459665.jpg', 1000),
+    'waterfront-insular.webp': ('https://www.waterfronthotels.com.ph/wp-content/uploads/2018/06/facade_hm3.jpg', 1200),
+    'inspiria-abreeza.webp': ('https://cf.bstatic.com/xdata/images/hotel/max1024x768/440922290.jpg?hp=1&k=b26836ccb1097d08726c2e76cbe72582e141c7a2f3ef98ef6b50e40579cb243d&o=', 1000),
+    'blue-lotus.webp': ('https://www.bluelotushotel.com/wp-content/uploads/2021/09/lobby-header-03sep2021.jpg', 1200),
+    'pinnacle-hotel.webp': ('https://assets.cdn.filesafe.space/FO8welDwwCmHOf7i4Qab/media/69d78202d7871cddf7c02f7f.jpg', 1200),
+    'apo-view.webp': ('https://tourism.davaocity.gov.ph/wp-content/uploads/2022/05/APO-VIEW.jpg', 1000),
     'marina-tuna.webp': ('https://tourism.davaocity.gov.ph/wp-content/uploads/2019/09/MARINA.jpg', 1000),
     'bistro-rosario.webp': ('https://tourism.davaocity.gov.ph/wp-content/uploads/2022/06/ROS.jpg', 1000),
     'purge-coffee.webp': ('https://tourism.davaocity.gov.ph/wp-content/uploads/2022/05/purge.jpg', 1000),
@@ -48,6 +56,10 @@ VENUE_IMAGES = {
 
 def main():
     DEST.mkdir(parents=True, exist_ok=True)
+    supplied = DEST / 'philippine-eagle-center.webp'
+    if not supplied.is_file():
+        raise SystemExit('Restore the owner-supplied philippine-eagle-center.webp from Git or the original attachment before fetching images.')
+    print('philippine-eagle-center.webp: preserving owner-supplied photo')
     targets = dict(IMAGES)
     targets.update({filename: (f'https://commons.wikimedia.org/wiki/Special:Redirect/file/{quote(title.replace(" ", "_"))}?width=1200', 1000) for filename, title in COMMONS_FILES.items()})
     targets.update(VENUE_IMAGES)

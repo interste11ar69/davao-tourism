@@ -57,13 +57,32 @@ Images are resized and converted for web delivery. Credit is displayed in the si
 | People's Park | Robert Ryan U. Ong | https://commons.wikimedia.org/wiki/File:People%27s_Park,_Davao_City,_Philippines_(1_May_2010).jpg | CC BY-SA 3.0 | Named park |
 | Roxas Night Market | RoyKabanlit | https://commons.wikimedia.org/wiki/File:Roxas_Ave_Night_Market_001.jpg | CC BY-SA 4.0 | Named market |
 | Davao Crocodile Park | WorldTravleerAndPhotoTaker | https://commons.wikimedia.org/wiki/File:Pangil_at_Davao_Crocodile_Park.jpg | CC BY-SA 4.0 | Crocodile at named park |
-| Philippine Eagle Center | RoyKabanlit | https://commons.wikimedia.org/wiki/File:Philippine_Eagle_at_the_Philippine_Eagle_Center_003.jpg | CC BY-SA 4.0 | Eagle at named center |
 | Eden Nature Park | Michael E. Peligro | https://commons.wikimedia.org/wiki/File:Eden_Nature_Park_panorama.jpg | CC BY-SA 4.0 | Entrance of named park |
 | Jack's Ridge | Saqib Qayyum | https://commons.wikimedia.org/wiki/File:Davao.JPG | CC BY-SA 3.0 | View from named ridge |
 | Seda Abreeza | Kenneth Rangas | https://commons.wikimedia.org/wiki/File:Seda_Hotel_Davao_-_panoramio_(2).jpg | CC BY 3.0 | Seda Abreeza exterior, photographed 2013 |
 | Park Inn by Radisson Davao | Kenneth Rangas | https://commons.wikimedia.org/wiki/File:SM_Lanang_Premier_Fountain_Court_and_Park_Inn_Davao_-_panoramio.jpg | CC BY 3.0 | Park Inn exterior beside SM Lanang fountain, photographed 2012 |
 
 Hotel photos show the named buildings; their older dates mean they should not be used to infer current room design or amenities. Photo derivatives were resized and converted to WebP; CC license and creator credits remain attached to each source in this register and public photo credits.
+
+## Requested stays (checked 2026-10-03)
+
+| Stay | Supported location and visitor use | Fact sources | Photo source and depiction |
+|---|---|---|---|
+| Dusit Thani Residence Davao | Stella Hizon Reyes Drive, Barrio Pampanga; residences with kitchenettes for short or longer stays. This is the city property. | https://www.dusit.com/dusitthani-residencedavao/ ; https://www.dusit.com/dusitthani-residencedavao/contact-us/ | Dusit official gallery: https://www.dusit.com/dusitthani-residencedavao/gallery/ ; exterior photograph, not a view from another venue |
+| Acacia Hotel Davao | J.P. Laurel Avenue, Lanang; city hotel with rooms and suites for a north-side base. | https://acaciahotelsdavao.com/ | Acacia official home page, hotel facade |
+| Grand Regal Hotel Davao | Km. 7, J.P. Laurel Avenue, Lanang; north-city hotel base. | https://tourism.davaocity.gov.ph/explore-the-city/nightlife/spa/grand-regal-hotel-davao/ | Davao City Tourism listing, hotel exterior |
+| Aeon Suites at Aeon Towers | J.P. Laurel Avenue, Bajada; suites in Aeon Towers near Abreeza. The active operator calls it Aeon Suites Staycation. Avoid claiming the developer's planned hotel is already operating. | https://greenwindowsdormitel.com/en/aeon-suites-staycations ; https://aeontowers.com.ph/ | Operator's Aeon Suites page, one-bedroom suite photograph; other room categories can differ |
+| Waterfront Insular Hotel Davao | Lanang, Davao City; hotel grounds, gardens, and Davao Gulf views for a slower stay. | https://www.waterfronthotels.com.ph/waterfront-insular-hotel-davao/ ; https://www.waterfronthotels.com.ph/wihd_contact/ | Operator property page, hotel entrance |
+| Inspiria Abreeza Davao | Inspiria Condominium, J.P. Laurel Avenue, Bajada; condo accommodation beside Abreeza. Units are separately managed: verify host, unit, and check-in terms before booking. | https://www.booking.com/hotel/ph/inspiria-abreeza-davao.html (indexed listing; direct browser request challenges JavaScript) ; https://inspiriatower.com/project-details/ ; https://www.lacouronnededavao.com/directions | Building exterior from https://www.booking.com/hotel/ph/inspiria-tower-condominium.en-gb.html ; depicts the shared Inspiria building, not a specific unit's interior. Savills/developer renderings were rejected. |
+| Blue Lotus Hotel | Quimpo Boulevard corner Ecoland Drive, Talomo District; south-city hotel with family rooms and suites. | https://www.bluelotushotel.com/ ; https://www.bluelotushotel.com/rooms-and-suites/ | Operator home page, hotel lobby |
+| The Pinnacle Hotel and Suites | Sta. Ana Avenue, Poblacion; downtown base near Gaisano Mall of Davao. | https://thepinnaclehotel.com/ ; https://thepinnaclehotel.com/contact | Operator home page, hotel lobby |
+| The Apo View Hotel | 150 J. Camus Street; central hotel for downtown visits. No claim about current pool availability. | https://apoviewhotel.com/ ; https://apoviewhotel.com/contact/ ; https://tourism.davaocity.gov.ph/explore-the-city/restaurants/ktv/apo-view-hotel/ | Davao City Tourism listing, hotel exterior and pool foreground; historical image does not confirm pool access |
+
+All nine new hotel photo sources omit a reuse license: permission unconfirmed. Source organizations above are credited; individual photographers are not identified on those pages. Retain source credits and obtain permission or licensed replacements before public release. Acquisition URLs are recorded in `scripts/fetch-images.py`; files are resized and converted to WebP. The register now has nine retained Creative Commons assets and 26 third-party business/hotel photos with unconfirmed permissions.
+
+## Owner-supplied Philippine Eagle Center photo
+
+The owner supplied the entrance-arch photo in chat and explicitly requested its use on the Philippine Eagle Center card. Original attachment: `codex-clipboard-5hyyVY.png`, 1100 x 1100 pixels. Photographer and original external source were not supplied; do not attribute this replacement to RoyKabanlit or apply the old Commons license. The optimized derivative is retained at `assets/images/philippine-eagle-center.webp`. The image script never remotely refreshes this file; preserve it from Git or use the owner's original attachment to replace it. The footer records the supplied provenance and project-use instruction.
 
 ## Restaurant and cafe photos
 

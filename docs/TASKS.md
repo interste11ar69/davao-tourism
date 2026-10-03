@@ -87,3 +87,19 @@ The owner explicitly requested all 13 named businesses and supplied screenshots 
 ### Image-rights decision, 2026-10-02
 
 Several authentic venue photos are publicly visible on business pages, city tourism pages, and local editorial pages, but those pages do not state a reuse license. Record each source and creator status honestly; do not imply that credit grants permission. This work is a local review build. Any photo with unconfirmed reuse rights is a public-release blocker until the owner obtains permission or supplies a licensed replacement. Menu-item photographs must be labeled as menu-item images and must not be described as photographs of the venue itself.
+
+## 2026-10-03 extension: nine stays and supplied Eagle Center photo
+
+Execution continues under the owner's existing approval and explicit continuation request. GitHub push remains canceled.
+
+| ID | Depends on | Files and work | Binary DoD | Verification |
+|---|---|---|---|---|
+| T24 | T23 | Verify hotel identities, addresses, actual property photos, and image provenance in `docs/SOURCES.md` | All nine requested stays have address evidence and a property photo source; Inspiria's condo status is explicit | Operator/city/source review and visual image comparison |
+| T25 | T24 | Add optimized hotel photos and acquisition URLs; replace Eagle Center WebP, alt, and credit; register footer credits | All nine hotel files and supplied entrance image load below 500 KB; remote refresh cannot overwrite supplied photo | Image decode/size review; image script syntax check |
+| T26 | T25 | Add hotel records and guide tags; update verifier | 35 places and 11 stays, requested hotel IDs present, correct category/area/intent and Maps data | `npm run verify -- --final` |
+| T27 | T26 | Update README and audit; phone/desktop QA | Stay filter shows 11 cards, images/search/details/Maps work, no overflow or page errors, source status documented | Browser at 390/1440 px; final verifier; `git diff --check`; `git status -sb` |
+
+- T24 complete: all nine hotel identities and Davao City addresses were reviewed against operator, city, property, and listing sources. Actual property photos were visually checked; Inspiria renderings were excluded. Source/creator/reuse status and the supplied Eagle Center photo provenance are in `docs/SOURCES.md`. Next: T25.
+- T25 complete: added nine visually reviewed hotel WebPs, updated acquisition URLs and footer credits, and replaced Eagle Center with the owner's entrance photograph and matching alt text. The supplied credit has no fabricated external link or license; remote refresh preserves this image and reports a missing supplied file. Verification: all ten changed images decode below 500 KB and image script compilation passed. Next: T26.
+- T26 complete: added nine hotel records with dated sources, exact property Maps searches, stay tags, and north/south/downtown areas. Verifier now requires 35 places, 11 stays, the requested hotel IDs, condo guidance, and preservation of the supplied image. Verification: final verifier, JavaScript syntax checks, and the image-script preservation pass completed successfully. Next: T27.
+- T27 complete for local review: README and audit reflect 35 places, 11 stays, 36 WebP assets, and supplied-photo provenance. Browser QA at 390/1440 px passed all image loading, hotel filtering/search/details/Maps, Escape, expanded photo credits, overflow, and page-error checks. The first browser assertion read a collapsed credit as visible text; expanding the disclosure corrected the test, with no application defect. Final verifier and `git diff --check` passed. The extension remains uncommitted and unpushed; source permissions remain an owner release step.

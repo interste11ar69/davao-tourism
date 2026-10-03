@@ -2,6 +2,8 @@
 
 Status: Approved for execution on 2026-09-27; extended 2026-10-02 for the requested venue additions and photo correction.
 
+Extension approved by the owner's continuation request on 2026-10-03: add Dusit Thani Residence Davao, Acacia Hotel Davao, Grand Regal Hotel Davao, Aeon Suites at Aeon Towers, Waterfront Insular Hotel Davao, Inspiria Abreeza Davao, Blue Lotus Hotel, The Pinnacle Hotel and Suites, and The Apo View Hotel. Retain the two existing Stay recommendations, giving 35 places and 11 Stay records. Each addition needs current Davao City address evidence, a photo of its actual property, Maps actions, and stay/area tags. Describe Inspiria as a condo stay with separately managed units. Replace the Philippine Eagle Center photograph with the entrance photo supplied by the owner. Record its supplied provenance without assigning a third-party license. Keep this extension local and unpushed.
+
 ## Problem and target users
 
 A person receiving the physical card needs a fast, trustworthy Davao City guide on a phone. The current site has useful categories but includes a Samal venue under a city-only promise, unrelated venue photos, 84 MB of images, unsupported "official" and "verified" claims, and a QR generator that visitors do not need. Users are first-time visitors, hotel guests, event visitors, and local hosts distributing cards.

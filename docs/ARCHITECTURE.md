@@ -81,4 +81,6 @@ Venue facts change: keep source and checked date, omit unsourced live claims. Im
 
 ## Coverage
 
+The 2026-10-03 hotel extension uses the existing location schema, grid, detail, area list, and Maps helpers. Nine hotel records and their stay/area tags are added in `src/data/locations.js`; acquisition URLs and photo credits are registered in the image script, footer, and sources. The optimized owner-supplied Eagle Center image replaces the existing WebP; it is excluded from remote refresh so a download cannot overwrite it. Footer credits support a supplied photo without an external source link. Verification checks 35 records and all 11 Stay images. README and audit report source status and fresh browser checks. No new runtime dependency is needed.
+
 Journey 1 maps to private card artwork, `index.html`, hero, and navbar. Journey 2 maps to place data, grid, detail, Maps, and state. Journey 3 maps to stories, hero, and sources. Journey 4 maps to `owner-card/**`, README, and proof verification. Journey 5 maps to footer, private card, README, and package metadata. Journey 6 maps to intent-tagged places, hero shortcuts, grid filtering, and Maps. Every goal has a component and task.

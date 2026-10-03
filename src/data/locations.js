@@ -9,6 +9,7 @@ export const categories = [
 const checkedAt = '2026-09-27';
 const source = (url, supports) => [{ url, checkedAt, supports }];
 const businessSource = (url, supports) => [{ url, checkedAt: '2026-10-02', supports }];
+const hotelSource = (url, supports) => [{ url, checkedAt: '2026-10-03', supports }];
 
 export const locations = [
   {
@@ -97,7 +98,7 @@ locations.push(
     address: 'Malagos, Baguio District, Davao City', city: 'Davao City',
     mapsQuery: 'Philippine Eagle Center, Malagos, Davao City', status: 'published',
     description: 'Meet the conservation work behind the Philippine eagle and explore a rainforest setting. Plan this as a longer outing from downtown.',
-    bestFor: 'A first Davao nature trip', image: { path: 'assets/images/philippine-eagle-center.webp', alt: 'Philippine eagle at the Philippine Eagle Center', depictsVenue: true, creditId: 'philippine-eagle-center' },
+    bestFor: 'A first Davao nature trip', image: { path: 'assets/images/philippine-eagle-center.webp', alt: 'Philippine Eagle Center entrance arch surrounded by trees', depictsVenue: true, creditId: 'philippine-eagle-center' },
     sources: source('https://www.philippineeaglefoundation.org/pec', 'center, visitor activities and Malagos address')
   },
   {
@@ -270,6 +271,94 @@ locations.push(
   }
 );
 
+locations.push(
+  {
+    id: 'dusit-thani', name: 'Dusit Thani Residence Davao', category: 'hotel', district: 'Pampanga, Lanang',
+    address: 'Stella Hizon Reyes Drive, Barrio Pampanga, Davao City', city: 'Davao City',
+    mapsQuery: 'Dusit Thani Residence Davao, Stella Hizon Reyes Drive, Davao City', status: 'published',
+    description: 'Hotel residences with kitchenettes on the north side of the city, suited to a short visit or a longer stay.',
+    bestFor: 'A residence-style hotel stay', image: { path: 'assets/images/dusit-thani.webp', alt: 'Exterior and entrance of Dusit Thani Residence Davao', depictsVenue: true, creditId: 'dusit-thani' },
+    sources: hotelSource('https://www.dusit.com/dusitthani-residencedavao/', 'Davao City property, address, residences and kitchenettes')
+  },
+  {
+    id: 'acacia-hotel', name: 'Acacia Hotel Davao', category: 'hotel', district: 'Lanang',
+    address: 'J.P. Laurel Avenue, Lanang, Davao City', city: 'Davao City',
+    mapsQuery: 'Acacia Hotel Davao, J.P. Laurel Avenue, Lanang, Davao City', status: 'published',
+    description: 'A Lanang hotel with rooms and suites for visitors planning most of their stops on the north side.',
+    bestFor: 'A north-city hotel base', image: { path: 'assets/images/acacia-hotel.webp', alt: 'Acacia Hotel Davao facade and illuminated sign', depictsVenue: true, creditId: 'acacia-hotel' },
+    sources: hotelSource('https://acaciahotelsdavao.com/', 'Lanang address, hotel rooms and suites')
+  },
+  {
+    id: 'grand-regal', name: 'Grand Regal Hotel Davao', category: 'hotel', district: 'Lanang',
+    address: 'Km. 7, J.P. Laurel Avenue, Lanang, Davao City', city: 'Davao City',
+    mapsQuery: 'Grand Regal Hotel Davao, Km. 7 J.P. Laurel Avenue, Lanang, Davao City', status: 'published',
+    description: 'A hotel on J.P. Laurel Avenue in Lanang, useful as a base for a north-Davao itinerary.',
+    bestFor: 'Staying around Lanang', image: { path: 'assets/images/grand-regal.webp', alt: 'Grand Regal Hotel Davao building and entrance', depictsVenue: true, creditId: 'grand-regal' },
+    sources: hotelSource('https://tourism.davaocity.gov.ph/explore-the-city/nightlife/spa/grand-regal-hotel-davao/', 'hotel identity and Km. 7 Lanang address')
+  },
+  {
+    id: 'aeon-suites', name: 'Aeon Suites at Aeon Towers', category: 'hotel', district: 'Bajada',
+    address: 'Aeon Towers, J.P. Laurel Avenue, Bajada, Davao City', city: 'Davao City',
+    mapsQuery: 'Aeon Suites Staycation, Aeon Towers, J.P. Laurel Avenue, Davao City', status: 'published',
+    description: 'Suites in Aeon Towers for an Abreeza-area stay. Confirm your room category and check-in arrangements with the operator.',
+    bestFor: 'A suite near Abreeza', image: { path: 'assets/images/aeon-suites.webp', alt: 'Bedroom in a one-bedroom suite at Aeon Suites Staycation', depictsVenue: true, creditId: 'aeon-suites' },
+    sources: [
+      ...hotelSource('https://greenwindowsdormitel.com/en/aeon-suites-staycations', 'active Aeon Suites Staycation accommodation and room categories'),
+      ...hotelSource('https://aeontowers.com.ph/', 'Aeon Towers address on J.P. Laurel Avenue, Bajada')
+    ]
+  },
+  {
+    id: 'waterfront-insular', name: 'Waterfront Insular Hotel Davao', category: 'hotel', district: 'Lanang',
+    address: 'Lanang, Davao City', city: 'Davao City',
+    mapsQuery: 'Waterfront Insular Hotel Davao, Lanang, Davao City', status: 'published',
+    description: 'Garden grounds and Davao Gulf views make this Lanang hotel a choice for a slower city stay.',
+    bestFor: 'Gardens and a bayside setting', image: { path: 'assets/images/waterfront-insular.webp', alt: 'Waterfront Insular Hotel Davao entrance surrounded by gardens', depictsVenue: true, creditId: 'waterfront-insular' },
+    sources: [
+      ...hotelSource('https://www.waterfronthotels.com.ph/waterfront-insular-hotel-davao/', 'hotel grounds, gardens and Davao Gulf setting'),
+      ...hotelSource('https://www.waterfronthotels.com.ph/wihd_contact/', 'Lanang, Davao City address')
+    ]
+  },
+  {
+    id: 'inspiria-abreeza', name: 'Inspiria Abreeza Davao', category: 'hotel', district: 'Bajada',
+    address: 'Inspiria Condominium, J.P. Laurel Avenue, Bajada, Davao City', city: 'Davao City',
+    mapsQuery: 'Inspiria Condominium, J.P. Laurel Avenue, Bajada, Davao City', status: 'published',
+    description: 'A condo stay beside Abreeza Mall. Units are separately managed, so confirm your host, unit and check-in instructions before booking.',
+    bestFor: 'A condo base beside Abreeza', image: { path: 'assets/images/inspiria-abreeza.webp', alt: 'Real exterior of Inspiria Condominium beside Abreeza in Davao City', depictsVenue: true, creditId: 'inspiria-abreeza' },
+    sources: [
+      ...hotelSource('https://www.lacouronnededavao.com/directions', 'Inspiria Condominium address and location beside Abreeza'),
+      ...hotelSource('https://www.booking.com/hotel/ph/inspiria-abreeza-davao.html', 'named condo accommodation listing'),
+      ...hotelSource('https://inspiriatower.com/project-details/', 'residential condominium identity')
+    ]
+  },
+  {
+    id: 'blue-lotus', name: 'Blue Lotus Hotel', category: 'hotel', district: 'Ecoland',
+    address: 'Quimpo Boulevard corner Ecoland Drive, Talomo District, Davao City', city: 'Davao City',
+    mapsQuery: 'Blue Lotus Hotel, Quimpo Boulevard and Ecoland Drive, Davao City', status: 'published',
+    description: 'A hotel at Quimpo Boulevard and Ecoland Drive, with family rooms and suites for a south-city base.',
+    bestFor: 'Staying around Ecoland', image: { path: 'assets/images/blue-lotus.webp', alt: 'Lobby and reception area inside Blue Lotus Hotel Davao', depictsVenue: true, creditId: 'blue-lotus' },
+    sources: hotelSource('https://www.bluelotushotel.com/', 'hotel, Ecoland address and family rooms')
+  },
+  {
+    id: 'pinnacle-hotel', name: 'The Pinnacle Hotel and Suites', category: 'hotel', district: 'Sta. Ana Avenue',
+    address: 'Sta. Ana Avenue, Poblacion District, Davao City', city: 'Davao City',
+    mapsQuery: 'The Pinnacle Hotel and Suites, Sta. Ana Avenue, Davao City', status: 'published',
+    description: 'A downtown hotel on Sta. Ana Avenue, near Gaisano Mall of Davao and the city\'s central stops.',
+    bestFor: 'A downtown sightseeing base', image: { path: 'assets/images/pinnacle-hotel.webp', alt: 'Lobby inside The Pinnacle Hotel and Suites in Davao City', depictsVenue: true, creditId: 'pinnacle-hotel' },
+    sources: hotelSource('https://thepinnaclehotel.com/', 'hotel, Sta. Ana address and nearby Gaisano Mall of Davao')
+  },
+  {
+    id: 'apo-view', name: 'The Apo View Hotel', category: 'hotel', district: 'J. Camus Street',
+    address: '150 J. Camus Street, Poblacion District, Davao City', city: 'Davao City',
+    mapsQuery: 'The Apo View Hotel, 150 J. Camus Street, Davao City', status: 'published',
+    description: 'A central hotel on J. Camus Street for visitors who want a downtown base for city walks and meals.',
+    bestFor: 'A central Davao stay', image: { path: 'assets/images/apo-view.webp', alt: 'The Apo View Hotel building with pool in the foreground', depictsVenue: true, creditId: 'apo-view' },
+    sources: [
+      ...hotelSource('https://apoviewhotel.com/', 'hotel and central city setting'),
+      ...hotelSource('https://apoviewhotel.com/contact/', '150 J. Camus Street address')
+    ]
+  }
+);
+
 const guideTags = {
   'peoples-park': ['first-time', 'family'],
   'roxas-night-market': ['first-time', 'tonight', 'food'],
@@ -281,6 +370,9 @@ const guideTags = {
   'green-coffee': ['food'],
   'seda-abreeza': ['stay'],
   'park-inn': ['stay'],
+  'dusit-thani': ['stay'], 'acacia-hotel': ['stay'], 'grand-regal': ['stay'],
+  'aeon-suites': ['stay'], 'waterfront-insular': ['stay'], 'inspiria-abreeza': ['stay'],
+  'blue-lotus': ['stay'], 'pinnacle-hotel': ['stay'], 'apo-view': ['stay'],
   'philippine-eagle-center': ['first-time', 'family'],
   'eden-nature-park': ['family'],
   'jacks-ridge': ['tonight', 'first-time'],
@@ -304,6 +396,9 @@ const areas = {
   'marina-tuna': 'south', 'bistro-rosario': 'downtown',
   'purge-coffee': 'south', 'green-coffee': 'north',
   'seda-abreeza': 'north', 'park-inn': 'north',
+  'dusit-thani': 'north', 'acacia-hotel': 'north', 'grand-regal': 'north',
+  'aeon-suites': 'north', 'waterfront-insular': 'north', 'inspiria-abreeza': 'north',
+  'blue-lotus': 'south', 'pinnacle-hotel': 'downtown', 'apo-view': 'downtown',
   'philippine-eagle-center': 'uplands', 'eden-nature-park': 'uplands',
   'jacks-ridge': 'south',
   'davao-famous': 'downtown', 'totsys': 'north', 'barok': 'north',
